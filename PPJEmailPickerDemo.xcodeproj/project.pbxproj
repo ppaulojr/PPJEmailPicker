@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9F0D9B661CEB69A700B2635E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B651CEB69A700B2635E /* main.m */; };
+		9F0D9B691CEB69A700B2635E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B681CEB69A700B2635E /* AppDelegate.m */; };
+		9F0D9B6C1CEB69A700B2635E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B6B1CEB69A700B2635E /* ViewController.m */; };
+		9F0D9B6F1CEB69A700B2635E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0D9B6D1CEB69A700B2635E /* Main.storyboard */; };
+		9F0D9B711CEB69A700B2635E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F0D9B701CEB69A700B2635E /* Assets.xcassets */; };
+		9F0D9B741CEB69A700B2635E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0D9B721CEB69A700B2635E /* LaunchScreen.storyboard */; };
+		9F0D9B7F1CEB69A700B2635E /* PPJEmailPickerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B7E1CEB69A700B2635E /* PPJEmailPickerDemoTests.m */; };
+		9F0D9B8A1CEB69A700B2635E /* PPJEmailPickerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B891CEB69A700B2635E /* PPJEmailPickerDemoUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9F0D9B7B1CEB69A700B2635E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F0D9B591CEB69A700B2635E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F0D9B601CEB69A700B2635E;
+			remoteInfo = PPJEmailPickerDemo;
+		};
+		9F0D9B861CEB69A700B2635E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9F0D9B591CEB69A700B2635E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9F0D9B601CEB69A700B2635E;
+			remoteInfo = PPJEmailPickerDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9F0D9B611CEB69A700B2635E /* PPJEmailPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPJEmailPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F0D9B651CEB69A700B2635E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9F0D9B671CEB69A700B2635E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9F0D9B681CEB69A700B2635E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9F0D9B6A1CEB69A700B2635E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9F0D9B6B1CEB69A700B2635E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9F0D9B6E1CEB69A700B2635E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9F0D9B701CEB69A700B2635E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F0D9B731CEB69A700B2635E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9F0D9B751CEB69A700B2635E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F0D9B7A1CEB69A700B2635E /* PPJEmailPickerDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPJEmailPickerDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F0D9B7E1CEB69A700B2635E /* PPJEmailPickerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPJEmailPickerDemoTests.m; sourceTree = "<group>"; };
+		9F0D9B801CEB69A700B2635E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F0D9B851CEB69A700B2635E /* PPJEmailPickerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPJEmailPickerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F0D9B891CEB69A700B2635E /* PPJEmailPickerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPJEmailPickerDemoUITests.m; sourceTree = "<group>"; };
+		9F0D9B8B1CEB69A700B2635E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9F0D9B5E1CEB69A700B2635E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F0D9B771CEB69A700B2635E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F0D9B821CEB69A700B2635E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9F0D9B581CEB69A700B2635E = {
+			isa = PBXGroup;
+			children = (
+				9F0D9B631CEB69A700B2635E /* PPJEmailPickerDemo */,
+				9F0D9B7D1CEB69A700B2635E /* PPJEmailPickerDemoTests */,
+				9F0D9B881CEB69A700B2635E /* PPJEmailPickerDemoUITests */,
+				9F0D9B621CEB69A700B2635E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9F0D9B621CEB69A700B2635E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9F0D9B611CEB69A700B2635E /* PPJEmailPickerDemo.app */,
+				9F0D9B7A1CEB69A700B2635E /* PPJEmailPickerDemoTests.xctest */,
+				9F0D9B851CEB69A700B2635E /* PPJEmailPickerDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F0D9B631CEB69A700B2635E /* PPJEmailPickerDemo */ = {
+			isa = PBXGroup;
+			children = (
+				9F0D9B671CEB69A700B2635E /* AppDelegate.h */,
+				9F0D9B681CEB69A700B2635E /* AppDelegate.m */,
+				9F0D9B6A1CEB69A700B2635E /* ViewController.h */,
+				9F0D9B6B1CEB69A700B2635E /* ViewController.m */,
+				9F0D9B6D1CEB69A700B2635E /* Main.storyboard */,
+				9F0D9B701CEB69A700B2635E /* Assets.xcassets */,
+				9F0D9B721CEB69A700B2635E /* LaunchScreen.storyboard */,
+				9F0D9B751CEB69A700B2635E /* Info.plist */,
+				9F0D9B641CEB69A700B2635E /* Supporting Files */,
+			);
+			path = PPJEmailPickerDemo;
+			sourceTree = "<group>";
+		};
+		9F0D9B641CEB69A700B2635E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9F0D9B651CEB69A700B2635E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9F0D9B7D1CEB69A700B2635E /* PPJEmailPickerDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				9F0D9B7E1CEB69A700B2635E /* PPJEmailPickerDemoTests.m */,
+				9F0D9B801CEB69A700B2635E /* Info.plist */,
+			);
+			path = PPJEmailPickerDemoTests;
+			sourceTree = "<group>";
+		};
+		9F0D9B881CEB69A700B2635E /* PPJEmailPickerDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9F0D9B891CEB69A700B2635E /* PPJEmailPickerDemoUITests.m */,
+				9F0D9B8B1CEB69A700B2635E /* Info.plist */,
+			);
+			path = PPJEmailPickerDemoUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9F0D9B601CEB69A700B2635E /* PPJEmailPickerDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F0D9B8E1CEB69A700B2635E /* Build configuration list for PBXNativeTarget "PPJEmailPickerDemo" */;
+			buildPhases = (
+				9F0D9B5D1CEB69A700B2635E /* Sources */,
+				9F0D9B5E1CEB69A700B2635E /* Frameworks */,
+				9F0D9B5F1CEB69A700B2635E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PPJEmailPickerDemo;
+			productName = PPJEmailPickerDemo;
+			productReference = 9F0D9B611CEB69A700B2635E /* PPJEmailPickerDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9F0D9B791CEB69A700B2635E /* PPJEmailPickerDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F0D9B911CEB69A700B2635E /* Build configuration list for PBXNativeTarget "PPJEmailPickerDemoTests" */;
+			buildPhases = (
+				9F0D9B761CEB69A700B2635E /* Sources */,
+				9F0D9B771CEB69A700B2635E /* Frameworks */,
+				9F0D9B781CEB69A700B2635E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9F0D9B7C1CEB69A700B2635E /* PBXTargetDependency */,
+			);
+			name = PPJEmailPickerDemoTests;
+			productName = PPJEmailPickerDemoTests;
+			productReference = 9F0D9B7A1CEB69A700B2635E /* PPJEmailPickerDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9F0D9B841CEB69A700B2635E /* PPJEmailPickerDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F0D9B941CEB69A700B2635E /* Build configuration list for PBXNativeTarget "PPJEmailPickerDemoUITests" */;
+			buildPhases = (
+				9F0D9B811CEB69A700B2635E /* Sources */,
+				9F0D9B821CEB69A700B2635E /* Frameworks */,
+				9F0D9B831CEB69A700B2635E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9F0D9B871CEB69A700B2635E /* PBXTargetDependency */,
+			);
+			name = PPJEmailPickerDemoUITests;
+			productName = PPJEmailPickerDemoUITests;
+			productReference = 9F0D9B851CEB69A700B2635E /* PPJEmailPickerDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9F0D9B591CEB69A700B2635E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0730;
+				ORGANIZATIONNAME = Netfilter;
+				TargetAttributes = {
+					9F0D9B601CEB69A700B2635E = {
+						CreatedOnToolsVersion = 7.3.1;
+					};
+					9F0D9B791CEB69A700B2635E = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 9F0D9B601CEB69A700B2635E;
+					};
+					9F0D9B841CEB69A700B2635E = {
+						CreatedOnToolsVersion = 7.3.1;
+						TestTargetID = 9F0D9B601CEB69A700B2635E;
+					};
+				};
+			};
+			buildConfigurationList = 9F0D9B5C1CEB69A700B2635E /* Build configuration list for PBXProject "PPJEmailPickerDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9F0D9B581CEB69A700B2635E;
+			productRefGroup = 9F0D9B621CEB69A700B2635E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9F0D9B601CEB69A700B2635E /* PPJEmailPickerDemo */,
+				9F0D9B791CEB69A700B2635E /* PPJEmailPickerDemoTests */,
+				9F0D9B841CEB69A700B2635E /* PPJEmailPickerDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9F0D9B5F1CEB69A700B2635E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F0D9B741CEB69A700B2635E /* LaunchScreen.storyboard in Resources */,
+				9F0D9B711CEB69A700B2635E /* Assets.xcassets in Resources */,
+				9F0D9B6F1CEB69A700B2635E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F0D9B781CEB69A700B2635E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F0D9B831CEB69A700B2635E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9F0D9B5D1CEB69A700B2635E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F0D9B6C1CEB69A700B2635E /* ViewController.m in Sources */,
+				9F0D9B691CEB69A700B2635E /* AppDelegate.m in Sources */,
+				9F0D9B661CEB69A700B2635E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F0D9B761CEB69A700B2635E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F0D9B7F1CEB69A700B2635E /* PPJEmailPickerDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9F0D9B811CEB69A700B2635E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F0D9B8A1CEB69A700B2635E /* PPJEmailPickerDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9F0D9B7C1CEB69A700B2635E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F0D9B601CEB69A700B2635E /* PPJEmailPickerDemo */;
+			targetProxy = 9F0D9B7B1CEB69A700B2635E /* PBXContainerItemProxy */;
+		};
+		9F0D9B871CEB69A700B2635E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9F0D9B601CEB69A700B2635E /* PPJEmailPickerDemo */;
+			targetProxy = 9F0D9B861CEB69A700B2635E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9F0D9B6D1CEB69A700B2635E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F0D9B6E1CEB69A700B2635E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9F0D9B721CEB69A700B2635E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F0D9B731CEB69A700B2635E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9F0D9B8C1CEB69A700B2635E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9F0D9B8D1CEB69A700B2635E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F0D9B8F1CEB69A700B2635E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PPJEmailPickerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.netfilter.PPJEmailPickerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9F0D9B901CEB69A700B2635E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PPJEmailPickerDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.netfilter.PPJEmailPickerDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		9F0D9B921CEB69A700B2635E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PPJEmailPickerDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.netfilter.PPJEmailPickerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PPJEmailPickerDemo.app/PPJEmailPickerDemo";
+			};
+			name = Debug;
+		};
+		9F0D9B931CEB69A700B2635E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = PPJEmailPickerDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.netfilter.PPJEmailPickerDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PPJEmailPickerDemo.app/PPJEmailPickerDemo";
+			};
+			name = Release;
+		};
+		9F0D9B951CEB69A700B2635E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PPJEmailPickerDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.netfilter.PPJEmailPickerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PPJEmailPickerDemo;
+			};
+			name = Debug;
+		};
+		9F0D9B961CEB69A700B2635E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = PPJEmailPickerDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = br.com.netfilter.PPJEmailPickerDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = PPJEmailPickerDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9F0D9B5C1CEB69A700B2635E /* Build configuration list for PBXProject "PPJEmailPickerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F0D9B8C1CEB69A700B2635E /* Debug */,
+				9F0D9B8D1CEB69A700B2635E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F0D9B8E1CEB69A700B2635E /* Build configuration list for PBXNativeTarget "PPJEmailPickerDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F0D9B8F1CEB69A700B2635E /* Debug */,
+				9F0D9B901CEB69A700B2635E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9F0D9B911CEB69A700B2635E /* Build configuration list for PBXNativeTarget "PPJEmailPickerDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F0D9B921CEB69A700B2635E /* Debug */,
+				9F0D9B931CEB69A700B2635E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		9F0D9B941CEB69A700B2635E /* Build configuration list for PBXNativeTarget "PPJEmailPickerDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F0D9B951CEB69A700B2635E /* Debug */,
+				9F0D9B961CEB69A700B2635E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9F0D9B591CEB69A700B2635E /* Project object */;
+}
