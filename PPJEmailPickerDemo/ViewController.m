@@ -28,6 +28,7 @@
 - (IBAction)ShowTable:(id)sender {
 	[self.emailPicker showDropDown];
 	self.emailPicker.selectedEmailList = [@[@"ppaulojr@usp.br", @"abc@google.com",@"ppaulojr@gmail.com",@"ppj@netfilter.com.br",@"sjobs@apple.com"] mutableCopy];
+	self.emailPicker.possibleStrings = @[@"uuu@uu.com",@"aaa.aa.com",@"abc@cba.com",@"pqpq@ppp.com",@"fak@git.com"];
 }
 
 @end

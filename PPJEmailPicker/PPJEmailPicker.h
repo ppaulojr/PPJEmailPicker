@@ -17,6 +17,7 @@
 @property (assign, nonatomic) CGFloat tableHeight;
 @property (copy, nonatomic) NSMutableArray *selectedEmailList;
 @property (assign, nonatomic) id<UITextFieldDelegate> originalDelegate;
+@property (copy, nonatomic) NSArray *possibleStrings;
 
 -(void) showDropDown;
 

@@ -17,6 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *selectedEmailUI;
 @property (assign, nonatomic) CGPoint inset;
 @property (strong, nonatomic) PPJSelectableLabel *currentSelectedEmail;
+@property (strong, nonatomic) NSMutableArray *possibleStringsFiltered;
 @end
 
 @implementation PPJEmailPicker
@@ -136,15 +137,41 @@
 	}
 }
 
+#pragma mark - Filter Array
+-(void) setPossibleStrings:(NSArray *)possibleStrings
+{
+	_possibleStrings = [possibleStrings copy];
+	[self filterArray:self.text];
+}
+
+-(void) filterArray:(NSString *)filter
+{
+	if (filter.length == 0) {
+		self.possibleStringsFiltered = [self.possibleStrings mutableCopy];
+		[self.emailPickerTableView reloadData];
+		return;
+	}
+	NSMutableArray *m = [NSMutableArray array];
+	for (NSString * string in self.possibleStrings) {
+		if ([string rangeOfString:filter].location != NSNotFound)
+		{
+			[m addObject:string];
+		}
+	}
+	self.possibleStringsFiltered = m;
+	[self.emailPickerTableView reloadData];
+	
+}
+
 #pragma mark - TableView Data Source
 -(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
 {
-	return 1;
+	return (self.possibleStringsFiltered.count > 0)?1:0;
 }
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return 3;
+	return (self.possibleStringsFiltered.count > 3)?3:self.possibleStrings.count;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -154,12 +181,11 @@
 	if (!cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 	}
-	cell.textLabel.text = [@"Hi" stringByAppendingFormat:@" %ld",(long)indexPath.row];
+	cell.textLabel.text = self.possibleStringsFiltered[indexPath.row];
 	return cell;
 }
 
-#pragma mark - 
-#pragma mark Add and Delete
+#pragma mark - Add and Delete
 - (void) addString:(NSString *)str
 {
 	[self.selectedEmailList addObject:str];
@@ -258,6 +284,7 @@
 		}
 		return NO;
 	}
+	[self filterArray:textField.text];
 	if ([self.originalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
 		return [self.originalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
 	}
