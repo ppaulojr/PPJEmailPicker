@@ -15,6 +15,12 @@
 		9F0D9B741CEB69A700B2635E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F0D9B721CEB69A700B2635E /* LaunchScreen.storyboard */; };
 		9F0D9B7F1CEB69A700B2635E /* PPJEmailPickerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B7E1CEB69A700B2635E /* PPJEmailPickerDemoTests.m */; };
 		9F0D9B8A1CEB69A700B2635E /* PPJEmailPickerDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B891CEB69A700B2635E /* PPJEmailPickerDemoUITests.m */; };
+		9F0D9B9A1CEB6A0C00B2635E /* PPJEmailPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B991CEB6A0C00B2635E /* PPJEmailPicker.m */; };
+		9F0D9B9B1CEB6A0C00B2635E /* PPJEmailPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B991CEB6A0C00B2635E /* PPJEmailPicker.m */; };
+		9F0D9B9C1CEB6A0C00B2635E /* PPJEmailPicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B991CEB6A0C00B2635E /* PPJEmailPicker.m */; };
+		9F20436A1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2043691CEB928D0031F557 /* PPJSelectableLabel.m */; };
+		9F20436B1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2043691CEB928D0031F557 /* PPJSelectableLabel.m */; };
+		9F20436C1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2043691CEB928D0031F557 /* PPJSelectableLabel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,11 @@
 		9F0D9B851CEB69A700B2635E /* PPJEmailPickerDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PPJEmailPickerDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0D9B891CEB69A700B2635E /* PPJEmailPickerDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PPJEmailPickerDemoUITests.m; sourceTree = "<group>"; };
 		9F0D9B8B1CEB69A700B2635E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F0D9B981CEB6A0C00B2635E /* PPJEmailPicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPJEmailPicker.h; path = PPJEmailPicker/PPJEmailPicker.h; sourceTree = SOURCE_ROOT; };
+		9F0D9B991CEB6A0C00B2635E /* PPJEmailPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPJEmailPicker.m; path = PPJEmailPicker/PPJEmailPicker.m; sourceTree = SOURCE_ROOT; };
+		9F2043681CEB928D0031F557 /* PPJSelectableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPJSelectableLabel.h; path = PPJEmailPicker/PPJSelectableLabel.h; sourceTree = SOURCE_ROOT; };
+		9F2043691CEB928D0031F557 /* PPJSelectableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPJSelectableLabel.m; path = PPJEmailPicker/PPJSelectableLabel.m; sourceTree = SOURCE_ROOT; };
+		9F20436D1CECFB640031F557 /* PPJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPJCommon.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +112,7 @@
 		9F0D9B631CEB69A700B2635E /* PPJEmailPickerDemo */ = {
 			isa = PBXGroup;
 			children = (
+				9F0D9B971CEB69BE00B2635E /* PPJEmailPicker */,
 				9F0D9B671CEB69A700B2635E /* AppDelegate.h */,
 				9F0D9B681CEB69A700B2635E /* AppDelegate.m */,
 				9F0D9B6A1CEB69A700B2635E /* ViewController.h */,
@@ -138,6 +150,18 @@
 				9F0D9B8B1CEB69A700B2635E /* Info.plist */,
 			);
 			path = PPJEmailPickerDemoUITests;
+			sourceTree = "<group>";
+		};
+		9F0D9B971CEB69BE00B2635E /* PPJEmailPicker */ = {
+			isa = PBXGroup;
+			children = (
+				9F0D9B981CEB6A0C00B2635E /* PPJEmailPicker.h */,
+				9F0D9B991CEB6A0C00B2635E /* PPJEmailPicker.m */,
+				9F2043681CEB928D0031F557 /* PPJSelectableLabel.h */,
+				9F2043691CEB928D0031F557 /* PPJSelectableLabel.m */,
+				9F20436D1CECFB640031F557 /* PPJCommon.h */,
+			);
+			name = PPJEmailPicker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,8 +295,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9F0D9B6C1CEB69A700B2635E /* ViewController.m in Sources */,
+				9F20436A1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */,
 				9F0D9B691CEB69A700B2635E /* AppDelegate.m in Sources */,
 				9F0D9B661CEB69A700B2635E /* main.m in Sources */,
+				9F0D9B9A1CEB6A0C00B2635E /* PPJEmailPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +306,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F20436B1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */,
 				9F0D9B7F1CEB69A700B2635E /* PPJEmailPickerDemoTests.m in Sources */,
+				9F0D9B9B1CEB6A0C00B2635E /* PPJEmailPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -288,7 +316,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F20436C1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */,
 				9F0D9B8A1CEB69A700B2635E /* PPJEmailPickerDemoUITests.m in Sources */,
+				9F0D9B9C1CEB6A0C00B2635E /* PPJEmailPicker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +528,7 @@
 				9F0D9B901CEB69A700B2635E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F0D9B911CEB69A700B2635E /* Build configuration list for PBXNativeTarget "PPJEmailPickerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +537,7 @@
 				9F0D9B931CEB69A700B2635E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		9F0D9B941CEB69A700B2635E /* Build configuration list for PBXNativeTarget "PPJEmailPickerDemoUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +546,7 @@
 				9F0D9B961CEB69A700B2635E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

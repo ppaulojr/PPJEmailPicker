@@ -7,8 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "PPJEmailPicker.h"
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet PPJEmailPicker *emailPicker;
 
 @end
 
@@ -22,6 +24,10 @@
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 	// Dispose of any resources that can be recreated.
+}
+- (IBAction)ShowTable:(id)sender {
+	[self.emailPicker showDropDown];
+	self.emailPicker.selectedEmailList = [@[@"ppaulojr@usp.br", @"abc@google.com",@"ppaulojr@gmail.com",@"ppj@netfilter.com.br",@"sjobs@apple.com"] mutableCopy];
 }
 
 @end
