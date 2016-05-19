@@ -9,6 +9,8 @@
 #ifndef PPJCommon_h
 #define PPJCommon_h
 
+#import "UIColor+Additions.h"
+
 #define kPPJSelectableLabelNotification   @"com.ppj.notification.selectableLabel"
 #define kPPJUnSelectableLabelNotification @"com.ppj.notification.unselectableLabel"
 

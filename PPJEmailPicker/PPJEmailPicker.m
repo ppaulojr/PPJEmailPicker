@@ -15,7 +15,7 @@
 
 @interface PPJEmailPicker ()
 @property (strong, nonatomic) NSMutableArray *selectedEmailUI;
-@property (assign, nonatomic) CGPoint inset;
+@property (assign, nonatomic) UIEdgeInsets inset;
 @property (strong, nonatomic) PPJSelectableLabel *currentSelectedEmail;
 @property (strong, nonatomic) NSMutableArray *possibleStringsFiltered;
 @end
@@ -28,7 +28,7 @@
 	if (self) {
 		_tableHeight = 100.0f;
 		_emailPickerTableView = [self newEmailPickerTableViewForTextField:self];
-		_inset = CGPointZero;
+		_inset = UIEdgeInsetsZero;
 		[super setDelegate:self];
 		[self registerNotifications];
 	}
@@ -91,6 +91,7 @@
 {
 	[super layoutSubviews];
 	CGRect finalFrame = self.frame;
+	self.inset = UIEdgeInsetsZero;
 	for (int i = 1; i < self.selectedEmailUI.count; i++) {
 		CGRect frame = ((PPJSelectableLabel *)(self.selectedEmailUI[i-1])).frame;
 		PPJSelectableLabel * lbl  = self.selectedEmailUI[i];
@@ -99,11 +100,6 @@
 									 frame.origin.y + frame.size.height + PPJEMAILPICKER_PADDING_Y,
 									 lbl.frame.size.width,
 									 lbl.frame.size.height)];
-			finalFrame  = CGRectMake(self.frame.origin.x,
-									 self.frame.origin.y,
-									 self.frame.size.width,
-									 frame.origin.y + frame.size.height
-									 + lbl.frame.size.height + 2*PPJEMAILPICKER_PADDING_Y);
 		}
 		else {
 			[lbl setFrame:CGRectMake(frame.origin.x + frame.size.width + PPJEMAILPICKER_PADDING_X,
@@ -111,27 +107,25 @@
 									 lbl.frame.size.width,
 									 lbl.frame.size.height)];
 		}
-		self.inset = CGPointMake(lbl.frame.origin.x + lbl.frame.size.width,
-								 lbl.frame.origin.y);
 	}
+	PPJSelectableLabel * lastElem = [self.selectedEmailUI lastObject];
+	if (lastElem) {
+		self.inset = UIEdgeInsetsMake(lastElem.frame.origin.y, lastElem.frame.origin.x + lastElem.frame.size.width, 0.0, 0.0);
+		finalFrame.size = CGSizeMake(finalFrame.size.width, lastElem.frame.origin.y + lastElem.frame.size.height + 2);
+	}
+	
 	self.frame = finalFrame;
 	self.emailPickerTableView.frame = [self emailPickerTableViewFrameForTextField:self];
 }
 
 // placeholder position
 - (CGRect)textRectForBounds:(CGRect)bounds {
-	return CGRectMake(self.inset.x + 2,
-					  self.inset.y + 2,
-					  self.frame.size.width - self.inset.x - 2,
-					  30);
+	return UIEdgeInsetsInsetRect([super textRectForBounds:bounds], self.inset);
 }
 
 // text position
 - (CGRect)editingRectForBounds:(CGRect)bounds {
-	return CGRectMake(self.inset.x + 2,
-					  self.inset.y + 2,
-					  self.frame.size.width - self.inset.x - 2,
-					  30);
+	return [self textRectForBounds:bounds];
 }
 
 -(void) renderList

@@ -8,6 +8,7 @@
 
 #import "PPJSelectableLabel.h"
 #import "PPJCommon.h"
+
 @interface PPJSelectableLabel ()
 @property (assign, nonatomic) BOOL isSelectedUI;
 @end
@@ -27,19 +28,22 @@
 {
 	_isSelectedUI = isSelectedUI;
 	if (isSelectedUI) {
-		self.layer.backgroundColor = [[UIColor lightGrayColor] CGColor];
+		self.layer.backgroundColor = [[UIColor foregroundDefaultColor] CGColor];
+		[super setTitleColor:[UIColor backgroudDefaultColor] forState:UIControlStateNormal];
 	}
 	else {
-		self.layer.backgroundColor = [[UIColor clearColor] CGColor];
+		self.layer.backgroundColor = [[UIColor backgroudDefaultColor] CGColor];
+		[super setTitleColor:[UIColor foregroundDefaultColor] forState:UIControlStateNormal];
 	}
 }
 
 -(void) commonInit
 {
 	[self addTarget:self action:@selector(didTouchButton) forControlEvents:UIControlEventTouchUpInside];
-	self.layer.borderColor = [[UIColor lightGrayColor] CGColor];
-	self.layer.borderWidth = 1.0f;
-	self.layer.cornerRadius = 5.0f;
+	self.layer.cornerRadius = 3.0f;
+	self.layer.backgroundColor = [[UIColor backgroudDefaultColor] CGColor];
+	self.titleLabel.textColor = [UIColor foregroundDefaultColor];
+	
 }
 
 -(void) layoutSubviews
