@@ -43,6 +43,7 @@
 	self.layer.cornerRadius = 3.0f;
 	self.layer.backgroundColor = [[UIColor backgroudDefaultColor] CGColor];
 	self.titleLabel.textColor = [UIColor foregroundDefaultColor];
+	self.titleLabel.font = [UIFont systemFontOfSize:13.0f];
 	self.contentEdgeInsets = UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0);
 	
 }
