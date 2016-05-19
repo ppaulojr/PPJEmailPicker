@@ -1,5 +1,6 @@
 # PPJEmailPicker
 An UITextField replacement to select multiple e-mails
 
-![gmaildemo](https://cloud.githubusercontent.com/assets/1206478/15394064/01128c5e-1da7-11e6-9185-46e0e05d158b.gif)
+## Demo
+![maildemo](https://cloud.githubusercontent.com/assets/1206478/15397067/1d74ed7a-1db5-11e6-99f8-37a71b1e1869.gif)
 
