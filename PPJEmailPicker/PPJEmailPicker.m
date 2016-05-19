@@ -28,18 +28,19 @@
 
 @implementation PPJEmailPicker
 
-- (instancetype)initWithCoder:(NSCoder *)coder
+#pragma mark - init override
+- (instancetype)init
 {
-	self = [super initWithCoder:coder];
+	self = [super init];
 	if (self) {
 		[self commonInit];
 	}
 	return self;
 }
 
-- (instancetype)init
+- (instancetype)initWithCoder:(NSCoder *)coder
 {
-	self = [super init];
+	self = [super initWithCoder:coder];
 	if (self) {
 		[self commonInit];
 	}
@@ -67,6 +68,8 @@
 	self.matchDistance = 3;
 }
 
+#pragma mark - notification Handler
+
 -(void) registerNotifications
 {
 	NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
@@ -80,7 +83,7 @@
 			   selector:@selector(unSelectedLabel:)
 				   name:kPPJUnSelectableLabelNotification
 				 object:nil];
-
+	
 }
 
 -(void) selectedLabel:(NSNotification *)aNotification
@@ -99,6 +102,7 @@
 	self.currentSelectedEmail = nil;
 }
 
+#pragma mark - setters and getters
 - (void)setDelegate:(id<UITextFieldDelegate>)delegate
 {
 	[self willChangeValueForKey:@"delegate"];
@@ -119,6 +123,7 @@
 	}
 }
 
+#pragma mark - layout
 -(void) layoutSubviews
 {
 	[super layoutSubviews];
@@ -162,6 +167,7 @@
 	return [self textRectForBounds:bounds];
 }
 
+#pragma mark - auxiliary functions
 -(void) renderList
 {
 	for (UIView * v in self.subviews) {
@@ -191,7 +197,7 @@
 {
 	if (filter.length == 0) {
 		self.possibleStringsFiltered = [@[] mutableCopy];
-		[self.emailPickerTableView reloadData];
+		[self closeDropDown];
 		return;
 	}
 	NSMutableArray *m = [NSMutableArray array];
@@ -204,8 +210,12 @@
 		}
 	}
 	self.possibleStringsFiltered = m;
-	[self.emailPickerTableView reloadData];
-	
+	if (![self isDropDownVisible]) {
+		[self showDropDown:3];
+	}
+	else {
+		[self.emailPickerTableView reloadData];
+	}
 }
 
 #pragma mark - TableView Data Source
@@ -230,7 +240,7 @@
 	return cell;
 }
 
-#pragma mark - Add and Delete
+#pragma mark - Add and Delete emails
 - (void) addString:(NSString *)str
 {
 	[self.selectedEmailList addObject:str];
@@ -256,6 +266,11 @@
 
 #pragma mark -
 #pragma mark TableView Delegate
+-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 44.0;
+}
+
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self addString:self.possibleStringsFiltered[indexPath.row]];
@@ -322,6 +337,14 @@
 	}
 }
 
+- (BOOL)isDropDownVisible
+{
+	if (self.emailPickerTableView.superview) {
+		return YES;
+	}
+	return NO;
+}
+
 -(void) showDropDown:(NSInteger)numberOfRows
 {
 
@@ -376,9 +399,9 @@
 {
 	BOOL superAnswer = [super becomeFirstResponder];
 	if (superAnswer) {
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[self showDropDown:3];
-		});
+//		dispatch_async(dispatch_get_main_queue(), ^{
+//			[self showDropDown:3];
+//		});
 	}
 	return superAnswer;
 }
