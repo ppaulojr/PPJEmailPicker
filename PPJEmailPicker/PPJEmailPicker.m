@@ -37,8 +37,17 @@
 
 -(void) registerNotifications
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectedLabel:) name:kPPJSelectableLabelNotification object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(unSelectedLabel:) name:kPPJUnSelectableLabelNotification object:nil];
+	NSNotificationCenter * center = [NSNotificationCenter defaultCenter];
+	
+	[center addObserver:self
+			   selector:@selector(selectedLabel:)
+				   name:kPPJSelectableLabelNotification
+				 object:nil];
+	
+	[center addObserver:self
+			   selector:@selector(unSelectedLabel:)
+				   name:kPPJUnSelectableLabelNotification
+				 object:nil];
 
 }
 
@@ -102,21 +111,27 @@
 									 lbl.frame.size.width,
 									 lbl.frame.size.height)];
 		}
-		self.inset = CGPointMake(lbl.frame.origin.x + lbl.frame.size.width, lbl.frame.origin.y);
+		self.inset = CGPointMake(lbl.frame.origin.x + lbl.frame.size.width,
+								 lbl.frame.origin.y);
 	}
-	
 	self.frame = finalFrame;
-	
+	self.emailPickerTableView.frame = [self emailPickerTableViewFrameForTextField:self];
 }
 
 // placeholder position
 - (CGRect)textRectForBounds:(CGRect)bounds {
-	return CGRectMake(self.inset.x + 2, self.inset.y + 2, self.frame.size.width - self.inset.x - 2, 30);
+	return CGRectMake(self.inset.x + 2,
+					  self.inset.y + 2,
+					  self.frame.size.width - self.inset.x - 2,
+					  30);
 }
 
 // text position
 - (CGRect)editingRectForBounds:(CGRect)bounds {
-	return CGRectMake(self.inset.x + 2, self.inset.y + 2, self.frame.size.width - self.inset.x - 2, 30);
+	return CGRectMake(self.inset.x + 2,
+					  self.inset.y + 2,
+					  self.frame.size.width - self.inset.x - 2,
+					  30);
 }
 
 -(void) renderList
@@ -171,7 +186,7 @@
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return (self.possibleStringsFiltered.count > 3)?3:self.possibleStrings.count;
+	return (self.possibleStringsFiltered.count > 3)?3:self.possibleStringsFiltered.count;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -213,8 +228,10 @@
 #pragma mark TableView Delegate
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[self addString:@"pp@pp.com"];
+	[self addString:self.possibleStringsFiltered[indexPath.row]];
+	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	self.text = @"";
+	[self filterArray:@""];
 }
 
 #pragma mark -
@@ -284,13 +301,14 @@
 		}
 		return NO;
 	}
-	[self filterArray:textField.text];
+	[self filterArray:[textField.text stringByAppendingString:string]];
 	if ([self.originalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
 		return [self.originalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
 	}
 	
 	return YES;
 }
+
 
 - (BOOL)textFieldShouldReturn:(UITextField *)txtField
 {
