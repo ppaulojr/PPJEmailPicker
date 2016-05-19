@@ -45,7 +45,6 @@
 	self.titleLabel.textColor = [UIColor foregroundDefaultColor];
 	self.titleLabel.font = [UIFont systemFontOfSize:13.0f];
 	self.contentEdgeInsets = UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0);
-	
 }
 
 -(void) layoutSubviews

@@ -8,6 +8,7 @@
 
 #import "PPJEmailPicker.h"
 #import "PPJCommon.h"
+#import "NSString+Levenshtein.h"
 #define PPJEMAILPICKER_PADDING_X 5
 #define PPJEMAILPICKER_PADDING_Y 2
 
@@ -18,6 +19,11 @@
 @property (assign, nonatomic) UIEdgeInsets inset;
 @property (strong, nonatomic) PPJSelectableLabel *currentSelectedEmail;
 @property (strong, nonatomic) NSMutableArray *possibleStringsFiltered;
+@property (assign, nonatomic) CGFloat matchDistance;
+@property (assign) CGColorRef originalShadowColor;
+@property (assign) CGSize originalShadowOffset;
+@property (assign) CGFloat originalShadowOpacity;
+@property (assign) CGFloat minimumHeightTextField;
 @end
 
 @implementation PPJEmailPicker
@@ -26,15 +32,39 @@
 {
 	self = [super initWithCoder:coder];
 	if (self) {
-		_tableHeight = 100.0f;
-		_emailPickerTableView = [self newEmailPickerTableViewForTextField:self];
-		_inset = UIEdgeInsetsZero;
-		self.selectedEmailUI = [@[] mutableCopy];
-		self.selectedEmailList = [@[] mutableCopy];
-		[super setDelegate:self];
-		[self registerNotifications];
+		[self commonInit];
 	}
 	return self;
+}
+
+- (instancetype)init
+{
+	self = [super init];
+	if (self) {
+		[self commonInit];
+	}
+	return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+	if (self) {
+		[self commonInit];
+	}
+	return self;
+}
+
+-(void) commonInit
+{
+	_tableHeight = 100.0f;
+	_emailPickerTableView = [self newEmailPickerTableViewForTextField:self];
+	_inset = UIEdgeInsetsZero;
+	self.selectedEmailUI = [@[] mutableCopy];
+	self.selectedEmailList = [@[] mutableCopy];
+	[super setDelegate:self];
+	[self registerNotifications];
+	self.matchDistance = 3;
 }
 
 -(void) registerNotifications
@@ -113,7 +143,9 @@
 	PPJSelectableLabel * lastElem = [self.selectedEmailUI lastObject];
 	if (lastElem) {
 		self.inset = UIEdgeInsetsMake(lastElem.frame.origin.y, lastElem.frame.origin.x + lastElem.frame.size.width, 0.0, 0.0);
-		finalFrame.size = CGSizeMake(finalFrame.size.width, lastElem.frame.origin.y + lastElem.frame.size.height + 2);
+		CGFloat height = lastElem.frame.origin.y + lastElem.frame.size.height + 2;
+		height = (height > 30)? height : 30;
+		finalFrame.size = CGSizeMake(finalFrame.size.width, height);
 	}
 	
 	self.frame = finalFrame;
@@ -158,13 +190,15 @@
 -(void) filterArray:(NSString *)filter
 {
 	if (filter.length == 0) {
-		self.possibleStringsFiltered = [self.possibleStrings mutableCopy];
+		self.possibleStringsFiltered = [@[] mutableCopy];
 		[self.emailPickerTableView reloadData];
 		return;
 	}
 	NSMutableArray *m = [NSMutableArray array];
 	for (NSString * string in self.possibleStrings) {
-		if ([string rangeOfString:filter].location != NSNotFound)
+		NSUInteger maximumRange = (filter.length < string.length) ? filter.length : string.length;
+		float editDistanceOfCurrentString = [filter asciiLevenshteinDistanceWithString:[string substringWithRange:NSMakeRange(0, maximumRange)]];
+		if (editDistanceOfCurrentString < self.matchDistance)
 		{
 			[m addObject:string];
 		}
@@ -228,6 +262,7 @@
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	self.text = @"";
 	[self filterArray:@""];
+	[self closeDropDown];
 }
 
 #pragma mark -
@@ -264,12 +299,60 @@
 	return frame;
 }
 
--(void) showDropDown
+- (void)saveCurrentShadowProperties
 {
-	[self.superview bringSubviewToFront:self];
-	UIView *rootView = [self.window.subviews objectAtIndex:0];
-	[rootView insertSubview:self.emailPickerTableView
+	[self setOriginalShadowColor:self.layer.shadowColor];
+	[self setOriginalShadowOffset:self.layer.shadowOffset];
+	[self setOriginalShadowOpacity:self.layer.shadowOpacity];
+}
+
+- (void)restoreOriginalShadowProperties
+{
+	[self.layer setShadowColor:self.originalShadowColor];
+	[self.layer setShadowOffset:self.originalShadowOffset];
+	[self.layer setShadowOpacity:self.originalShadowOpacity];
+}
+
+- (void)closeDropDown
+{
+	[self.emailPickerTableView removeFromSuperview];
+	[self restoreOriginalShadowProperties];
+	if ([self.pickerDelegate respondsToSelector:@selector(picker:displayCompletionStateChange:)]) {
+		[self.pickerDelegate picker:self displayCompletionStateChange:NO];
+	}
+}
+
+-(void) showDropDown:(NSInteger)numberOfRows
+{
+
+	if (numberOfRows) {
+		self.emailPickerTableView.alpha = 1.0;
+		if (!self.emailPickerTableView.superview) {
+			// TODO: warn delegates
+		}
+
+		[self.superview bringSubviewToFront:self];
+		[self.superview insertSubview:self.emailPickerTableView
 			   belowSubview:self];
+		[self.emailPickerTableView setUserInteractionEnabled:YES];
+		if(1)
+		{ //TODO: add condition
+			[self.layer setShadowColor:[[UIColor blackColor] CGColor]];
+			[self.layer setShadowOffset:CGSizeMake(0, 1)];
+			[self.layer setShadowOpacity:0.35];
+		}
+		if ([self.pickerDelegate respondsToSelector:@selector(picker:displayCompletionStateChange:)]) {
+			[self.pickerDelegate picker:self displayCompletionStateChange:YES];
+		}
+	} else {
+		[self closeDropDown];
+		[self restoreOriginalShadowProperties];
+		[self.emailPickerTableView.layer setShadowOpacity:0.0];
+		if ([self.pickerDelegate respondsToSelector:@selector(picker:displayCompletionStateChange:)]) {
+			[self.pickerDelegate picker:self displayCompletionStateChange:NO];
+		}
+	}
+
 }
 
 #pragma mark -
@@ -281,6 +364,23 @@
 		[self removeCurrentSelectedEmail];
 	}
 	[super deleteBackward];
+}
+
+-(BOOL) resignFirstResponder
+{
+	[self closeDropDown];
+	return [super resignFirstResponder];
+}
+
+-(BOOL) becomeFirstResponder
+{
+	BOOL superAnswer = [super becomeFirstResponder];
+	if (superAnswer) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self showDropDown:3];
+		});
+	}
+	return superAnswer;
 }
 
 

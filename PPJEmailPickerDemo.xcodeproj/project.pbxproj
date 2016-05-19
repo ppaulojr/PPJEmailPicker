@@ -22,7 +22,8 @@
 		9F20436B1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2043691CEB928D0031F557 /* PPJSelectableLabel.m */; };
 		9F20436C1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2043691CEB928D0031F557 /* PPJSelectableLabel.m */; };
 		9F2043701CEDE8190031F557 /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F20436F1CEDE8190031F557 /* UIColor+Additions.m */; };
-		9F2043761CEE0D840031F557 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F2043751CEE0D840031F557 /* NSString+Levenshtein.m */; };
+		9F20437C1CEE0E2D0031F557 /* NSString+Levenshtein.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F20437B1CEE0E2D0031F557 /* NSString+Levenshtein.m */; };
+		9F20437F1CEE25ED0031F557 /* TableViewControllerDemo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F20437E1CEE25ED0031F557 /* TableViewControllerDemo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +67,10 @@
 		9F20436D1CECFB640031F557 /* PPJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPJCommon.h; sourceTree = "<group>"; };
 		9F20436E1CEDE8190031F557 /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Additions.h"; path = "PPJEmailPicker/UIColor+Additions.h"; sourceTree = SOURCE_ROOT; };
 		9F20436F1CEDE8190031F557 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Additions.m"; path = "PPJEmailPicker/UIColor+Additions.m"; sourceTree = SOURCE_ROOT; };
-		9F2043741CEE0D840031F557 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Levenshtein.h"; sourceTree = "<group>"; };
-		9F2043751CEE0D840031F557 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Levenshtein.m"; sourceTree = "<group>"; };
+		9F20437A1CEE0E2D0031F557 /* NSString+Levenshtein.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Levenshtein.h"; path = "PPJEmailPicker/NSString+Levenshtein.h"; sourceTree = SOURCE_ROOT; };
+		9F20437B1CEE0E2D0031F557 /* NSString+Levenshtein.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Levenshtein.m"; path = "PPJEmailPicker/NSString+Levenshtein.m"; sourceTree = SOURCE_ROOT; };
+		9F20437D1CEE25ED0031F557 /* TableViewControllerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerDemo.h; sourceTree = "<group>"; };
+		9F20437E1CEE25ED0031F557 /* TableViewControllerDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewControllerDemo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +131,8 @@
 				9F0D9B721CEB69A700B2635E /* LaunchScreen.storyboard */,
 				9F0D9B751CEB69A700B2635E /* Info.plist */,
 				9F0D9B641CEB69A700B2635E /* Supporting Files */,
+				9F20437D1CEE25ED0031F557 /* TableViewControllerDemo.h */,
+				9F20437E1CEE25ED0031F557 /* TableViewControllerDemo.m */,
 			);
 			path = PPJEmailPickerDemo;
 			sourceTree = "<group>";
@@ -161,8 +166,8 @@
 		9F0D9B971CEB69BE00B2635E /* PPJEmailPicker */ = {
 			isa = PBXGroup;
 			children = (
-				9F2043741CEE0D840031F557 /* NSString+Levenshtein.h */,
-				9F2043751CEE0D840031F557 /* NSString+Levenshtein.m */,
+				9F20437A1CEE0E2D0031F557 /* NSString+Levenshtein.h */,
+				9F20437B1CEE0E2D0031F557 /* NSString+Levenshtein.m */,
 				9F0D9B981CEB6A0C00B2635E /* PPJEmailPicker.h */,
 				9F0D9B991CEB6A0C00B2635E /* PPJEmailPicker.m */,
 				9F2043681CEB928D0031F557 /* PPJSelectableLabel.h */,
@@ -304,10 +309,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F20437F1CEE25ED0031F557 /* TableViewControllerDemo.m in Sources */,
 				9F0D9B6C1CEB69A700B2635E /* ViewController.m in Sources */,
 				9F20436A1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */,
 				9F0D9B691CEB69A700B2635E /* AppDelegate.m in Sources */,
-				9F2043761CEE0D840031F557 /* NSString+Levenshtein.m in Sources */,
+				9F20437C1CEE0E2D0031F557 /* NSString+Levenshtein.m in Sources */,
 				9F0D9B661CEB69A700B2635E /* main.m in Sources */,
 				9F0D9B9A1CEB6A0C00B2635E /* PPJEmailPicker.m in Sources */,
 				9F2043701CEDE8190031F557 /* UIColor+Additions.m in Sources */,

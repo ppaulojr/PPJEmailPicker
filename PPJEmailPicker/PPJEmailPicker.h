@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "PPJSelectableLabel.h"
-#
+
+@protocol PPJEmailPickerDelegate;
 
 @interface PPJEmailPicker : UITextField <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 @property (strong, readonly, nonatomic) UITableView *emailPickerTableView;
@@ -18,7 +19,18 @@
 @property (copy, nonatomic) NSMutableArray *selectedEmailList;
 @property (assign, nonatomic) id<UITextFieldDelegate> originalDelegate;
 @property (copy, nonatomic) NSArray *possibleStrings;
+@property (assign, nonatomic) CGFloat minimumHeight;
+@property (assign, nonatomic) id<PPJEmailPickerDelegate> pickerDelegate;
 
--(void) showDropDown;
+-(void) showDropDown:(NSInteger)numberOfRows;
+
+
+@end
+
+
+@protocol PPJEmailPickerDelegate <NSObject>
+
+@optional
+-(void) picker:(PPJEmailPicker*)picker displayCompletionStateChange:(BOOL)visible;
 
 @end
