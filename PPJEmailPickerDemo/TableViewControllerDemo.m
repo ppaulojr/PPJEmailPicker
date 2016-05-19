@@ -21,16 +21,15 @@
 	actf.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	actf.font = [UIFont systemFontOfSize:14.0];
 	actf.autocorrectionType = UITextAutocorrectionTypeNo;
-//	actf.emailPickerRegularFontName = @"Helvetica-Neue";
-//	actf.emailPickerFontSize = FONT_SIZE_PATIENT_NAME_HISTORY;
 	actf.textColor = [UIColor greenColor];
 	actf.backgroundColor = [UIColor clearColor];
-//	actf.autoCompleteDataSource = self;
 	actf.pickerDelegate = self;
 	actf.emailPickerTableView.clipsToBounds = YES;
 	// Cells and Table color
 	actf.emailPickerTableView.backgroundColor = [UIColor whiteColor];
 	actf.possibleStrings = @[@"uuu@uu.com",@"aaa.aa.com",@"abc@cba.com",@"pqpq@ppp.com",@"fak@git.com"];
+	actf.placeholder = NSLocalizedString(@"Type e-mail to send recognition", nil);
+
 
 
 	return actf;
@@ -47,10 +46,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (indexPath.section == 0){
-		return 50 + self.autocompleteHeight;
+	if (indexPath.row == 0){
+		return 44 + self.autocompleteHeight;
 	}else {
-		return 50;
+		return 44;
 	}
 }
 
@@ -62,6 +61,12 @@
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	return 3;
+}
+
+-(UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0,0,tableView.frame.size.width,50)];
+	return view;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
