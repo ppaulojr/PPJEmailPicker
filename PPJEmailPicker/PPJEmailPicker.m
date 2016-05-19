@@ -29,6 +29,8 @@
 		_tableHeight = 100.0f;
 		_emailPickerTableView = [self newEmailPickerTableViewForTextField:self];
 		_inset = UIEdgeInsetsZero;
+		self.selectedEmailUI = [@[] mutableCopy];
+		self.selectedEmailList = [@[] mutableCopy];
 		[super setDelegate:self];
 		[self registerNotifications];
 	}
@@ -141,8 +143,8 @@
 		[lbl setTitle:s forState:UIControlStateNormal];
 		[lbl setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 		[lbl sizeToFit];
-		[self addSubview:lbl];
 		[self.selectedEmailUI addObject:lbl];
+		[self addSubview:lbl];
 	}
 }
 
@@ -202,8 +204,8 @@
 	[lbl setTitle:str forState:UIControlStateNormal];
 	[lbl setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
 	[lbl sizeToFit];
-	[self addSubview:lbl];
 	[self.selectedEmailUI addObject:lbl];
+	[self addSubview:lbl];
 }
 
 - (void) removeCurrentSelectedEmail

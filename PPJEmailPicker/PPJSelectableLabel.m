@@ -43,6 +43,7 @@
 	self.layer.cornerRadius = 3.0f;
 	self.layer.backgroundColor = [[UIColor backgroudDefaultColor] CGColor];
 	self.titleLabel.textColor = [UIColor foregroundDefaultColor];
+	self.contentEdgeInsets = UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0);
 	
 }
 
@@ -50,6 +51,21 @@
 {
 	[super layoutSubviews];
 }
+
+- (CGSize)intrinsicContentSize {
+	//
+	CGSize size;
+	
+	self.titleLabel.frame = CGRectMake(self.titleLabel.frame.origin.x,
+            self.titleLabel.frame.origin.y,
+            self.frame.size.width - self.contentEdgeInsets.left - self.contentEdgeInsets.right - self.titleEdgeInsets.left - self.titleEdgeInsets.right,
+            0);
+	size = [self.titleLabel sizeThatFits:self.titleLabel.frame.size];
+	size = CGSizeMake(size.width, size.height + 20);
+	
+	return size;
+}
+
 
 -(void) didTouchButton
 {
