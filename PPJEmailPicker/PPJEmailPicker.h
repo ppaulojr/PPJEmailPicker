@@ -31,6 +31,7 @@
 @protocol PPJEmailPickerDelegate <NSObject>
 
 @optional
--(void) picker:(PPJEmailPicker*)picker displayCompletionStateChange:(BOOL)visible;
+-(void) picker:(PPJEmailPicker *)picker displayCompletionStateChange:(BOOL)visible;
+-(void) picker:(PPJEmailPicker *)picker haveArrayOfEmails:(NSArray *)emails;
 
 @end

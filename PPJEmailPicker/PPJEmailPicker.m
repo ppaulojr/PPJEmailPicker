@@ -250,6 +250,9 @@
 	[lbl sizeToFit];
 	[self.selectedEmailUI addObject:lbl];
 	[self addSubview:lbl];
+	if ([self.pickerDelegate respondsToSelector:@selector(picker:haveArrayOfEmails:)]) {
+		[self.pickerDelegate picker:self haveArrayOfEmails:[self.selectedEmailList copy]];
+	}
 }
 
 - (void) removeCurrentSelectedEmail
@@ -262,6 +265,9 @@
 	[self.selectedEmailUI removeObject:self.currentSelectedEmail];
 	[self.currentSelectedEmail removeFromSuperview];
 	self.currentSelectedEmail = nil;
+	if ([self.pickerDelegate respondsToSelector:@selector(picker:haveArrayOfEmails:)]) {
+		[self.pickerDelegate picker:self haveArrayOfEmails:[self.selectedEmailList copy]];
+	}
 }
 
 #pragma mark -
