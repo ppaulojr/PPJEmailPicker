@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eL9-5f-Q7c">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eL9-5f-Q7c">
                                 <rect key="frame" x="106" y="379" width="46" height="30"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -37,18 +37,32 @@
                                     <segue destination="qkT-RS-jZr" kind="showDetail" action="showViewController:sender:" id="Ek1-ki-ErR"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="T5F-yO-YCA">
+                                <rect key="frame" x="20" y="229" width="560" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="AiP-bk-xth" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="0cg-4b-4aP"/>
                             <constraint firstItem="4Ms-EM-buf" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="23x-44-K6N"/>
                             <constraint firstAttribute="leadingMargin" secondItem="AiP-bk-xth" secondAttribute="leading" id="2AV-z3-5RQ"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="T5F-yO-YCA" secondAttribute="leading" id="2RP-l3-nVB"/>
+                            <constraint firstItem="eL9-5f-Q7c" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="86" id="7WL-sS-NXB"/>
+                            <constraint firstItem="eL9-5f-Q7c" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="359" id="BNf-wC-Sje"/>
+                            <constraint firstItem="eL9-5f-Q7c" firstAttribute="top" secondItem="T5F-yO-YCA" secondAttribute="bottom" constant="22" id="LJ6-F6-BZf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AiP-bk-xth" secondAttribute="trailing" id="Qkw-yQ-zdw"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="T5F-yO-YCA" secondAttribute="trailing" id="VJJ-2U-N4g"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="4Ms-EM-buf" secondAttribute="bottom" constant="20" id="bAH-sg-xrV"/>
+                            <constraint firstItem="T5F-yO-YCA" firstAttribute="top" secondItem="AiP-bk-xth" secondAttribute="bottom" constant="171" id="c7g-WY-T8G"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailPicker" destination="AiP-bk-xth" id="zqh-g9-R0G"/>
+                        <outlet property="emailResults" destination="T5F-yO-YCA" id="hmm-bl-fe3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
