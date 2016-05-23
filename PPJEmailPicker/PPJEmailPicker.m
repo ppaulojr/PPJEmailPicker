@@ -8,7 +8,6 @@
 
 #import "PPJEmailPicker.h"
 #import "PPJCommon.h"
-#import "NSString+Levenshtein.h"
 #define PPJEMAILPICKER_PADDING_X 5
 #define PPJEMAILPICKER_PADDING_Y 2
 
@@ -202,13 +201,14 @@
 	}
 	NSMutableArray *m = [NSMutableArray array];
 	for (NSString * string in self.possibleStrings) {
-		NSUInteger maximumRange = (filter.length < string.length) ? filter.length : string.length;
-		float editDistanceOfCurrentString = [filter asciiLevenshteinDistanceWithString:[string substringWithRange:NSMakeRange(0, maximumRange)]];
-		if (editDistanceOfCurrentString < self.matchDistance)
+		if ([string hasPrefix:filter])
 		{
 			[m addObject:string];
 		}
 	}
+	[m sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+		return [((NSString*)obj1) compare:((NSString*)obj2)];
+	}];
 	self.possibleStringsFiltered = m;
 	if (![self isDropDownVisible]) {
 		[self showDropDown:3];
