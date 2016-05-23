@@ -7,33 +7,36 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "PPJEmailPicker.h"
 
 @interface PPJEmailPickerDemoTests : XCTestCase
-
+@property (strong, nonatomic) PPJEmailPicker *email;
 @end
 
 @implementation PPJEmailPickerDemoTests
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+	self.email = [[PPJEmailPicker alloc] initWithFrame:CGRectMake(0.0, 0.0, 320.0f, 30.0f)];
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+- (void) tearDown {
+	[super tearDown];
+	self.email = nil;
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testCreation {
+	XCTAssert(self.email != nil, @"Check creation");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void) testInitialSize {
+	XCTAssert(self.email.frame.size.width == 320.0f, @"Width");
+	XCTAssert(self.email.frame.size.height == 30.0f, @"Height");
+}
+
+- (void) testAccessibility {
+	self.email.text = @"Hello";
+	XCTAssert([self.email.accessibilityLabel isEqualToString:@"Hello"]);
 }
 
 @end

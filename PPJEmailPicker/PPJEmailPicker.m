@@ -67,6 +67,16 @@
 	self.matchDistance = 3;
 }
 
+#pragma mark - accessibility 
+- (NSString *) accessibilityLabel
+{
+	NSString * accessbilityStr = @"";
+	for (NSString * string in self.selectedEmailList) {
+		accessbilityStr = [accessbilityStr stringByAppendingFormat:@"%@ ,",string];
+	}
+	return [accessbilityStr stringByAppendingString:self.text];
+}
+
 #pragma mark - notification Handler
 
 -(void) registerNotifications
