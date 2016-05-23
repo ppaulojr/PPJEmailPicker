@@ -125,6 +125,7 @@
 #pragma mark - layout
 -(void) layoutSubviews
 {
+	//TODO: Refactor this ugly code
 	[super layoutSubviews];
 	CGRect finalFrame = self.frame;
 	self.inset = UIEdgeInsetsZero;
@@ -146,9 +147,19 @@
 	}
 	PPJSelectableLabel * lastElem = [self.selectedEmailUI lastObject];
 	if (lastElem) {
-		self.inset = UIEdgeInsetsMake(lastElem.frame.origin.y, lastElem.frame.origin.x + lastElem.frame.size.width, 0.0, 0.0);
+		self.inset = UIEdgeInsetsMake(lastElem.frame.origin.y,
+									  lastElem.frame.origin.x + lastElem.frame.size.width,
+									  0.0, 0.0);
 		CGFloat height = lastElem.frame.origin.y + lastElem.frame.size.height + 2;
 		height = (height > 30)? height : 30;
+		if (height == 30) {
+			for (PPJSelectableLabel * lbl in self.selectedEmailUI) {
+				lbl.frame = CGRectMake(lbl.frame.origin.x,
+									   (30.0f - lbl.frame.size.height) / 2,
+									   lbl.frame.size.width,
+									   lbl.frame.size.height);
+			}
+		}
 		finalFrame.size = CGSizeMake(finalFrame.size.width, height);
 	}
 	
@@ -199,6 +210,7 @@
 		[self closeDropDown];
 		return;
 	}
+	filter = [filter lowercaseString];
 	NSMutableArray *m = [NSMutableArray array];
 	for (NSString * string in self.possibleStrings) {
 		if ([string hasPrefix:filter])
@@ -341,6 +353,10 @@
 	if ([self.pickerDelegate respondsToSelector:@selector(picker:displayCompletionStateChange:)]) {
 		[self.pickerDelegate picker:self displayCompletionStateChange:NO];
 	}
+	if ([self.pickerDelegate respondsToSelector:@selector(picker:changedHeight:)]) {
+		CGFloat diff = self.frame.size.height - 30.0;
+		[self.pickerDelegate picker:self changedHeight:diff];
+	}
 }
 
 - (BOOL)isDropDownVisible
@@ -357,7 +373,7 @@
 	if (numberOfRows) {
 		self.emailPickerTableView.alpha = 1.0;
 		if (!self.emailPickerTableView.superview) {
-			// TODO: warn delegates
+
 		}
 
 		[self.superview bringSubviewToFront:self];
@@ -373,13 +389,14 @@
 		if ([self.pickerDelegate respondsToSelector:@selector(picker:displayCompletionStateChange:)]) {
 			[self.pickerDelegate picker:self displayCompletionStateChange:YES];
 		}
+		if ([self.pickerDelegate respondsToSelector:@selector(picker:changedHeight:)]) {
+			CGFloat diff = self.frame.size.height - 30.0;
+			[self.pickerDelegate picker:self changedHeight:diff + numberOfRows*44];
+		}
 	} else {
 		[self closeDropDown];
 		[self restoreOriginalShadowProperties];
 		[self.emailPickerTableView.layer setShadowOpacity:0.0];
-		if ([self.pickerDelegate respondsToSelector:@selector(picker:displayCompletionStateChange:)]) {
-			[self.pickerDelegate picker:self displayCompletionStateChange:NO];
-		}
 	}
 
 }
@@ -422,6 +439,7 @@
 		NSString * add = textField.text;
 		if (add.length > 0) {
 			[self addString:add];
+			[self closeDropDown];
 			textField.text = @"";
 		}
 		return NO;
@@ -440,6 +458,7 @@
 	NSString * add = txtField.text;
 	if (add.length > 0) {
 		[self addString:add];
+		[self closeDropDown];
 		txtField.text = @"";
 	}
 	return NO;

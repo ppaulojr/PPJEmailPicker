@@ -8,6 +8,7 @@
 
 #import "TableViewControllerDemo.h"
 #import "PPJEmailPicker.h"
+#import "ListOfEmails.h"
 
 @interface TableViewControllerDemo() <PPJEmailPickerDelegate>
 @property (assign, nonatomic) CGFloat autocompleteHeight;
@@ -21,17 +22,14 @@
 	actf.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	actf.font = [UIFont systemFontOfSize:14.0];
 	actf.autocorrectionType = UITextAutocorrectionTypeNo;
-	actf.textColor = [UIColor greenColor];
-	actf.backgroundColor = [UIColor clearColor];
+//	actf.textColor = [UIColor greenColor];
+//	actf.backgroundColor = [UIColor clearColor];
 	actf.pickerDelegate = self;
 	actf.emailPickerTableView.clipsToBounds = YES;
 	// Cells and Table color
-	actf.emailPickerTableView.backgroundColor = [UIColor whiteColor];
-	actf.possibleStrings = @[@"uuu@uu.com",@"aaa.aa.com",@"abc@cba.com",@"pqpq@ppp.com",@"fak@git.com"];
+//	actf.emailPickerTableView.backgroundColor = [UIColor whiteColor];
+	actf.possibleStrings = [[ListOfEmails emails] mutableCopy];
 	actf.placeholder = NSLocalizedString(@"Type e-mail to send recognition", nil);
-
-
-
 	return actf;
 }
 
@@ -92,13 +90,8 @@
 	return cell;
 }
 
--(void) picker:(PPJEmailPicker *)picker displayCompletionStateChange:(BOOL)visible
+-(void) picker:(PPJEmailPicker *)picker changedHeight:(CGFloat)height
 {
-	if (visible) {
-		self.autocompleteHeight = 3*44;
-	}
-	else {
-		self.autocompleteHeight = 0;
-	}
+	self.autocompleteHeight = height;
 }
 @end
