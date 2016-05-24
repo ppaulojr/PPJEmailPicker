@@ -69,7 +69,7 @@
 	self.pickerTextColor                      = [UIColor foregroundDefaultColor];
 	self.pickerSelectedTextColor              = [UIColor backgroudDefaultColor];
 	self.pickerSelectedBackgroundColor        = [UIColor foregroundDefaultColor];
-	[super setDelegate:self];
+	super.delegate = self;
 	[self registerNotifications];
 }
 
@@ -149,19 +149,19 @@
 		CGRect frame = ((PPJSelectableLabel *)(self.selectedEmailUI[i-1])).frame;
 		PPJSelectableLabel * lbl  = self.selectedEmailUI[i];
 		if ((frame.origin.x + frame.size.width) + PPJEMAILPICKER_PADDING_X + lbl.frame.size.width > self.frame.size.width) {
-			[lbl setFrame:CGRectMake(0,
+			lbl.frame = CGRectMake(0,
 									 frame.origin.y + frame.size.height + PPJEMAILPICKER_PADDING_Y,
 									 lbl.frame.size.width,
-									 lbl.frame.size.height)];
+									 lbl.frame.size.height);
 		}
 		else {
-			[lbl setFrame:CGRectMake(frame.origin.x + frame.size.width + PPJEMAILPICKER_PADDING_X,
+			lbl.frame = CGRectMake(frame.origin.x + frame.size.width + PPJEMAILPICKER_PADDING_X,
 									 frame.origin.y,
 									 lbl.frame.size.width,
-									 lbl.frame.size.height)];
+									 lbl.frame.size.height);
 		}
 	}
-	PPJSelectableLabel * lastElem = [self.selectedEmailUI lastObject];
+	PPJSelectableLabel * lastElem = (self.selectedEmailUI).lastObject;
 	if (lastElem) {
 		self.inset = UIEdgeInsetsMake(lastElem.frame.origin.y,
 									  lastElem.frame.origin.x + lastElem.frame.size.width,
@@ -226,7 +226,7 @@
 		[self closeDropDown];
 		return;
 	}
-	filter = [filter lowercaseString];
+	filter = filter.lowercaseString;
 	NSMutableArray *m = [NSMutableArray array];
 	for (NSString * string in self.possibleStrings) {
 		if ([string hasPrefix:filter])
@@ -288,7 +288,7 @@
 - (void) removeCurrentSelectedEmail
 {
 	if (!self.currentSelectedEmail) {
-		self.currentSelectedEmail = [self.selectedEmailUI lastObject];
+		self.currentSelectedEmail = (self.selectedEmailUI).lastObject;
 	}
 	NSString * selectedEmailText = self.currentSelectedEmail.titleLabel.text;
 	[self.selectedEmailList removeObject:selectedEmailText];
@@ -325,10 +325,10 @@
 	
 	UITableView *newTableView = [[UITableView alloc] initWithFrame:dropDownTableFrame
 															 style:UITableViewStylePlain];
-	[newTableView setDelegate:textField];
-	[newTableView setDataSource:textField];
+	newTableView.delegate = textField;
+	newTableView.dataSource = textField;
 	[newTableView setScrollEnabled:YES];
-	[newTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+	newTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
 	return newTableView;
 }
@@ -352,16 +352,16 @@
 
 - (void)saveCurrentShadowProperties
 {
-	[self setOriginalShadowColor:self.layer.shadowColor];
-	[self setOriginalShadowOffset:self.layer.shadowOffset];
-	[self setOriginalShadowOpacity:self.layer.shadowOpacity];
+	self.originalShadowColor = self.layer.shadowColor;
+	self.originalShadowOffset = self.layer.shadowOffset;
+	self.originalShadowOpacity = self.layer.shadowOpacity;
 }
 
 - (void)restoreOriginalShadowProperties
 {
-	[self.layer setShadowColor:self.originalShadowColor];
-	[self.layer setShadowOffset:self.originalShadowOffset];
-	[self.layer setShadowOpacity:self.originalShadowOpacity];
+	(self.layer).shadowColor = self.originalShadowColor;
+	(self.layer).shadowOffset = self.originalShadowOffset;
+	(self.layer).shadowOpacity = self.originalShadowOpacity;
 }
 
 - (void)closeDropDown
@@ -400,9 +400,9 @@
 		[self.emailPickerTableView setUserInteractionEnabled:YES];
 		if(self.makeTextFieldDropShadowWithAutoCompleteTableOpen)
 		{
-			[self.layer setShadowColor:[[UIColor blackColor] CGColor]];
-			[self.layer setShadowOffset:CGSizeMake(0, 1)];
-			[self.layer setShadowOpacity:0.35];
+			(self.layer).shadowColor = [UIColor blackColor].CGColor;
+			(self.layer).shadowOffset = CGSizeMake(0, 1);
+			(self.layer).shadowOpacity = 0.35;
 		}
 		if ([self.pickerDelegate respondsToSelector:@selector(picker:displayCompletionStateChange:)]) {
 			[self.pickerDelegate picker:self displayCompletionStateChange:YES];
@@ -414,7 +414,7 @@
 	} else {
 		[self closeDropDown];
 		[self restoreOriginalShadowProperties];
-		[self.emailPickerTableView.layer setShadowOpacity:0.0];
+		(self.emailPickerTableView.layer).shadowOpacity = 0.0;
 	}
 
 }

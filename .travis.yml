@@ -1,0 +1,3 @@
+language: objective-c
+xcode_project: PPJEmailPickerDemo.xcodeproj 
+xcode_scheme: PPJEmailPickerDemoTests

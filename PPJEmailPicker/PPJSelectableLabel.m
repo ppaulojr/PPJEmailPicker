@@ -28,11 +28,11 @@
 {
 	_isSelectedUI = isSelectedUI;
 	if (isSelectedUI) {
-		self.layer.backgroundColor = [self.labelSelectedBackgroundColor CGColor];
+		self.layer.backgroundColor = (self.labelSelectedBackgroundColor).CGColor;
 		[super setTitleColor:self.labelSelectedTextColor forState:UIControlStateNormal];
 	}
 	else {
-		self.layer.backgroundColor = [self.labelBackgroundColor CGColor];
+		self.layer.backgroundColor = (self.labelBackgroundColor).CGColor;
 		[super setTitleColor:self.labelTextColor forState:UIControlStateNormal];
 	}
 }
@@ -45,7 +45,7 @@
 	self.labelTextColor = [UIColor foregroundDefaultColor];
 	self.labelSelectedTextColor = [UIColor backgroudDefaultColor];
 	self.labelSelectedBackgroundColor = [UIColor foregroundDefaultColor];
-	self.layer.backgroundColor = [self.labelBackgroundColor CGColor];
+	self.layer.backgroundColor = (self.labelBackgroundColor).CGColor;
 	self.titleLabel.textColor = self.labelTextColor;
 	self.titleLabel.font = [UIFont systemFontOfSize:13.0f];
 	self.contentEdgeInsets = UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0);
