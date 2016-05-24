@@ -1,4 +1,9 @@
 # PPJEmailPicker
+[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/PPJEmailPicker.svg)](https://img.shields.io/cocoapods/v/PPJEmailPicker.svg)
+[![GitHub issues](https://img.shields.io/github/issues/ppaulojr/PPJEmailPicker.svg?style=plastic)](https://github.com/ppaulojr/PPJEmailPicker/issues) 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=plastic)](https://raw.githubusercontent.com/ppaulojr/PPJEmailPicker/master/LICENSE)
+[![Twitter](https://img.shields.io/badge/twitter-@ppaulojr-blue.svg?style=flat)](http://twitter.com/ppaulojr)
+
 An UITextField replacement to select multiple e-mails
 
 ## Demo
