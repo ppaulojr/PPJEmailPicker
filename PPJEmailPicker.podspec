@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "PPJEmailPicker"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "An UITextField replacement to select multiple e-mails"
 
   # This description is used to generate tags and improve search results.
@@ -81,7 +81,7 @@ The goal is to create a control similar to GMail, Outlook or Mail.app `from` fie
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "PPJEmailPicker", "PPJEmailPicker/**/*.{h,m}"
+  s.source_files  = "PPJEmailPicker"
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
