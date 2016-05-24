@@ -28,12 +28,12 @@
 {
 	_isSelectedUI = isSelectedUI;
 	if (isSelectedUI) {
-		self.layer.backgroundColor = [[UIColor foregroundDefaultColor] CGColor];
-		[super setTitleColor:[UIColor backgroudDefaultColor] forState:UIControlStateNormal];
+		self.layer.backgroundColor = [self.labelSelectedBackgroundColor CGColor];
+		[super setTitleColor:self.labelSelectedTextColor forState:UIControlStateNormal];
 	}
 	else {
-		self.layer.backgroundColor = [[UIColor backgroudDefaultColor] CGColor];
-		[super setTitleColor:[UIColor foregroundDefaultColor] forState:UIControlStateNormal];
+		self.layer.backgroundColor = [self.labelBackgroundColor CGColor];
+		[super setTitleColor:self.labelTextColor forState:UIControlStateNormal];
 	}
 }
 
@@ -41,8 +41,12 @@
 {
 	[self addTarget:self action:@selector(didTouchButton) forControlEvents:UIControlEventTouchUpInside];
 	self.layer.cornerRadius = 3.0f;
-	self.layer.backgroundColor = [[UIColor backgroudDefaultColor] CGColor];
-	self.titleLabel.textColor = [UIColor foregroundDefaultColor];
+	self.labelBackgroundColor = [UIColor backgroudDefaultColor];
+	self.labelTextColor = [UIColor foregroundDefaultColor];
+	self.labelSelectedTextColor = [UIColor backgroudDefaultColor];
+	self.labelSelectedBackgroundColor = [UIColor foregroundDefaultColor];
+	self.layer.backgroundColor = [self.labelBackgroundColor CGColor];
+	self.titleLabel.textColor = self.labelTextColor;
 	self.titleLabel.font = [UIFont systemFontOfSize:13.0f];
 	self.contentEdgeInsets = UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0);
 }

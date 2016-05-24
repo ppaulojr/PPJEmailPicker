@@ -12,15 +12,37 @@
 @protocol PPJEmailPickerDelegate;
 
 @interface PPJEmailPicker : UITextField <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
-@property (strong, readonly, nonatomic) UITableView *emailPickerTableView;
-@property (assign, nonatomic) BOOL emailPickerTableViewHidden;
-@property (assign, nonatomic) CGRect emailPickerTableViewFrame;
-@property (assign, nonatomic) CGFloat tableHeight;
-@property (copy, nonatomic) NSMutableArray *selectedEmailList;
-@property (assign, nonatomic) id<UITextFieldDelegate> originalDelegate;
-@property (copy, nonatomic) NSArray *possibleStrings;
-@property (assign, nonatomic) CGFloat minimumHeight;
-@property (assign, nonatomic) id<PPJEmailPickerDelegate> pickerDelegate;
+
+@property (assign          ) id<UITextFieldDelegate>      originalDelegate;
+@property (assign          ) id<PPJEmailPickerDelegate>   pickerDelegate;
+@property (strong, readonly) UITableView                 *emailPickerTableView;
+@property (assign          ) BOOL                         emailPickerTableViewHidden;
+@property (assign          ) BOOL                         makeTextFieldDropShadowWithAutoCompleteTableOpen;
+@property (assign          ) CGRect                       emailPickerTableViewFrame;
+@property (assign          ) CGFloat                      tableHeight;
+@property (copy, nonatomic ) NSMutableArray              *selectedEmailList;
+@property (copy, nonatomic ) NSArray                     *possibleStrings;
+@property (assign          ) CGFloat                      minimumHeight;
+@property (assign          ) CGFloat                      autoCompleteRowHeight;
+@property (assign          ) NSInteger                    numberOfAutocompleteRows;
+@property (strong          ) UIColor					 *autoCompleteTableCellTextColor;
+@property (strong          ) UIColor					 *autoCompleteTableCellBackgroundColor;
+@property (strong          ) UIColor					 *pickerBackgroundColor;
+@property (strong          ) UIColor					 *pickerTextColor;
+@property (strong          ) UIColor					 *pickerSelectedTextColor;
+@property (strong          ) UIColor					 *pickerSelectedBackgroundColor;
+
+
+
+
+
+
+
+
+
+//@property NSString * autoCompleteRegularFontName = HelveticaNeue;
+//@property CGFloat autoCompleteFontSize = 13.0;
+//
 
 -(void) showDropDown:(NSInteger)numberOfRows;
 

@@ -11,18 +11,16 @@
 #define PPJEMAILPICKER_PADDING_X 5
 #define PPJEMAILPICKER_PADDING_Y 2
 
-
-
 @interface PPJEmailPicker ()
-@property (strong, nonatomic) NSMutableArray *selectedEmailUI;
-@property (assign, nonatomic) UIEdgeInsets inset;
-@property (strong, nonatomic) PPJSelectableLabel *currentSelectedEmail;
-@property (strong, nonatomic) NSMutableArray *possibleStringsFiltered;
-@property (assign, nonatomic) CGFloat matchDistance;
-@property (assign) CGColorRef originalShadowColor;
-@property (assign) CGSize originalShadowOffset;
-@property (assign) CGFloat originalShadowOpacity;
-@property (assign) CGFloat minimumHeightTextField;
+@property (strong, nonatomic) NSMutableArray      *selectedEmailUI;
+@property (strong, nonatomic) PPJSelectableLabel  *currentSelectedEmail;
+@property (strong, nonatomic) NSMutableArray      *possibleStringsFiltered;
+@property (assign, nonatomic) UIEdgeInsets         inset;
+@property (assign, nonatomic) CGFloat              matchDistance;
+@property (assign, nonatomic) CGColorRef           originalShadowColor;
+@property (assign, nonatomic) CGSize               originalShadowOffset;
+@property (assign, nonatomic) CGFloat              originalShadowOpacity;
+@property (assign, nonatomic) CGFloat              minimumHeightTextField;
 @end
 
 @implementation PPJEmailPicker
@@ -57,14 +55,22 @@
 
 -(void) commonInit
 {
-	_tableHeight = 100.0f;
-	_emailPickerTableView = [self newEmailPickerTableViewForTextField:self];
-	_inset = UIEdgeInsetsZero;
-	self.selectedEmailUI = [@[] mutableCopy];
-	self.selectedEmailList = [@[] mutableCopy];
+	self.tableHeight                          = 100.0f;
+	_emailPickerTableView                     = [self newEmailPickerTableViewForTextField:self];
+	self.inset                                = UIEdgeInsetsZero;
+	self.selectedEmailUI                      = [@[] mutableCopy];
+	self.selectedEmailList                    = [@[] mutableCopy];
+	self.numberOfAutocompleteRows             = 3;
+	self.autoCompleteRowHeight                = 44.0f;
+	self.autoCompleteTableCellTextColor       = [UIColor blackColor];
+	self.autoCompleteTableCellBackgroundColor = [UIColor clearColor];
+	self.emailPickerTableView.clipsToBounds   = YES;
+	self.pickerBackgroundColor                = [UIColor backgroudDefaultColor];
+	self.pickerTextColor                      = [UIColor foregroundDefaultColor];
+	self.pickerSelectedTextColor              = [UIColor backgroudDefaultColor];
+	self.pickerSelectedBackgroundColor        = [UIColor foregroundDefaultColor];
 	[super setDelegate:self];
 	[self registerNotifications];
-	self.matchDistance = 3;
 }
 
 #pragma mark - accessibility 
@@ -199,7 +205,7 @@
 	for (NSString * s in self.selectedEmailList) {
 		PPJSelectableLabel * lbl = [[PPJSelectableLabel alloc] init];
 		[lbl setTitle:s forState:UIControlStateNormal];
-		[lbl setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+		[lbl setTitleColor:self.pickerSelectedTextColor forState:UIControlStateNormal];
 		[lbl sizeToFit];
 		[self.selectedEmailUI addObject:lbl];
 		[self addSubview:lbl];
@@ -233,7 +239,7 @@
 	}];
 	self.possibleStringsFiltered = m;
 	if (![self isDropDownVisible]) {
-		[self showDropDown:3];
+		[self showDropDown:self.numberOfAutocompleteRows];
 	}
 	else {
 		[self.emailPickerTableView reloadData];
@@ -259,6 +265,8 @@
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 	}
 	cell.textLabel.text = self.possibleStringsFiltered[indexPath.row];
+	cell.textLabel.textColor = self.autoCompleteTableCellTextColor;
+	cell.backgroundColor = self.autoCompleteTableCellBackgroundColor;
 	return cell;
 }
 
@@ -268,7 +276,7 @@
 	[self.selectedEmailList addObject:str];
 	PPJSelectableLabel * lbl = [[PPJSelectableLabel alloc] init];
 	[lbl setTitle:str forState:UIControlStateNormal];
-	[lbl setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+	[lbl setTitleColor:self.pickerTextColor forState:UIControlStateNormal];
 	[lbl sizeToFit];
 	[self.selectedEmailUI addObject:lbl];
 	[self addSubview:lbl];
@@ -296,7 +304,7 @@
 #pragma mark TableView Delegate
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return 44.0;
+	return self.autoCompleteRowHeight;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -390,8 +398,8 @@
 		[self.superview insertSubview:self.emailPickerTableView
 			   belowSubview:self];
 		[self.emailPickerTableView setUserInteractionEnabled:YES];
-		if(1)
-		{ //TODO: add condition
+		if(self.makeTextFieldDropShadowWithAutoCompleteTableOpen)
+		{
 			[self.layer setShadowColor:[[UIColor blackColor] CGColor]];
 			[self.layer setShadowOffset:CGSizeMake(0, 1)];
 			[self.layer setShadowOpacity:0.35];
@@ -401,7 +409,7 @@
 		}
 		if ([self.pickerDelegate respondsToSelector:@selector(picker:changedHeight:)]) {
 			CGFloat diff = self.frame.size.height - 30.0;
-			[self.pickerDelegate picker:self changedHeight:diff + numberOfRows*44];
+			[self.pickerDelegate picker:self changedHeight:diff + numberOfRows*self.autoCompleteRowHeight];
 		}
 	} else {
 		[self closeDropDown];
