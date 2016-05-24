@@ -70,7 +70,7 @@ The goal is to create a control similar to GMail, Outlook or Mail.app `from` fie
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/ppaulojr/PPJEmailPicker.git", :tag => "1.0.0" }
+  s.source       = { :git => "https://github.com/ppaulojr/PPJEmailPicker.git", :tag => "1.0.1" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
