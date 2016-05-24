@@ -7,7 +7,7 @@
 An UITextField replacement to select multiple e-mails
 
 ## Demo
-![maildemo](https://cloud.githubusercontent.com/assets/1206478/15473873/903f70a2-20d8-11e6-919e-474682571106.gif)
+![maildemo2](https://cloud.githubusercontent.com/assets/1206478/15519274/0f0b316a-21d7-11e6-81d2-dc6ceacea184.gif)
 
 ## Installation with CocoaPods
 
@@ -17,5 +17,25 @@ Add the line below to your `Podfile`:
 
 ```ruby
 pod 'PPJEmailPicker'
+```
+
+## Usage
+
+### Programatically 
+
+```objc
+-(PPJEmailPicker *) createAutoCompleteFieldWithFrame:(CGRect)frame
+{
+	PPJEmailPicker * actf = [[PPJEmailPicker alloc] initWithFrame:frame];
+	actf.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	actf.font = [UIFont systemFontOfSize:14.0];
+	actf.autocorrectionType = UITextAutocorrectionTypeNo;
+	actf.pickerDelegate = self;
+	actf.emailPickerTableView.clipsToBounds = YES;
+	// Cells and Table color
+	actf.possibleStrings = [[ListOfEmails emails] mutableCopy];
+	actf.placeholder = NSLocalizedString(@"Type e-mail to send recognition", nil);
+	return actf;
+}
 ```
 
