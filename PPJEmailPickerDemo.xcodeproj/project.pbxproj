@@ -66,13 +66,13 @@
 		9F0D9B991CEB6A0C00B2635E /* PPJEmailPicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPJEmailPicker.m; path = PPJEmailPicker/PPJEmailPicker.m; sourceTree = SOURCE_ROOT; };
 		9F2043681CEB928D0031F557 /* PPJSelectableLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPJSelectableLabel.h; path = PPJEmailPicker/PPJSelectableLabel.h; sourceTree = SOURCE_ROOT; };
 		9F2043691CEB928D0031F557 /* PPJSelectableLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PPJSelectableLabel.m; path = PPJEmailPicker/PPJSelectableLabel.m; sourceTree = SOURCE_ROOT; };
-		9F20436D1CECFB640031F557 /* PPJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PPJCommon.h; sourceTree = "<group>"; };
 		9F20436E1CEDE8190031F557 /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Additions.h"; path = "PPJEmailPicker/UIColor+Additions.h"; sourceTree = SOURCE_ROOT; };
 		9F20436F1CEDE8190031F557 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Additions.m"; path = "PPJEmailPicker/UIColor+Additions.m"; sourceTree = SOURCE_ROOT; };
 		9F20437D1CEE25ED0031F557 /* TableViewControllerDemo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewControllerDemo.h; sourceTree = "<group>"; };
 		9F20437E1CEE25ED0031F557 /* TableViewControllerDemo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewControllerDemo.m; sourceTree = "<group>"; };
 		9F598B1F1CF336F7004245CB /* ListOfEmails.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListOfEmails.h; sourceTree = "<group>"; };
 		9F598B201CF336F7004245CB /* ListOfEmails.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListOfEmails.m; sourceTree = "<group>"; };
+		9F598B2D1CF4E1C9004245CB /* PPJCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PPJCommon.h; path = PPJEmailPicker/PPJCommon.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,11 +170,11 @@
 		9F0D9B971CEB69BE00B2635E /* PPJEmailPicker */ = {
 			isa = PBXGroup;
 			children = (
+				9F598B2D1CF4E1C9004245CB /* PPJCommon.h */,
 				9F0D9B981CEB6A0C00B2635E /* PPJEmailPicker.h */,
 				9F0D9B991CEB6A0C00B2635E /* PPJEmailPicker.m */,
 				9F2043681CEB928D0031F557 /* PPJSelectableLabel.h */,
 				9F2043691CEB928D0031F557 /* PPJSelectableLabel.m */,
-				9F20436D1CECFB640031F557 /* PPJCommon.h */,
 				9F20436E1CEDE8190031F557 /* UIColor+Additions.h */,
 				9F20436F1CEDE8190031F557 /* UIColor+Additions.m */,
 			);
