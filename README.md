@@ -23,19 +23,35 @@ pod 'PPJEmailPicker'
 
 ### Programatically 
 
+#### Step 1 - Import Header
+
+```objc
+#import "PPJEmailPicker.h"
+```
+
+##### Step 2 - create object
 ```objc
 -(PPJEmailPicker *) createAutoCompleteFieldWithFrame:(CGRect)frame
 {
 	PPJEmailPicker * actf = [[PPJEmailPicker alloc] initWithFrame:frame];
-	actf.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	actf.font = [UIFont systemFontOfSize:14.0];
-	actf.autocorrectionType = UITextAutocorrectionTypeNo;
 	actf.pickerDelegate = self;
-	actf.emailPickerTableView.clipsToBounds = YES;
-	// Cells and Table color
 	actf.possibleStrings = [[ListOfEmails emails] mutableCopy];
 	actf.placeholder = NSLocalizedString(@"Type e-mail to send recognition", nil);
 	return actf;
 }
 ```
 
+##### Step 3 - Pass a list of emails to it
+```objc
+	actf.possibleStrings = @[@"email1@email.com", @"email2@email.com];
+```
+
+### Interface Builder
+
+Add a `UITextField` and change the class to `PPJEmailPicker`.
+
+Don't forget to set the `pickerDelegate` and to pass a list of e-mails for autocompletion.
+
+## Questions
+
+Contact me at Twitter: [@ppaulojr](https://twitter.com/ppaulojr)
