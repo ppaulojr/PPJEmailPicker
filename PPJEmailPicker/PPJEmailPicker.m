@@ -428,6 +428,11 @@
 
 -(void) deleteBackward
 {
+	if (self.currentSelectedEmail) {
+		// remove and don't call super
+		[self removeCurrentSelectedEmail];
+		return;
+	}
 	NSInteger length = self.text.length;
 	if (length == 0) {
 		[self removeCurrentSelectedEmail];
