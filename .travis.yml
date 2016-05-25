@@ -6,3 +6,4 @@ xcode_sdk: iphonesimulator
 before_install:
   - brew update
   - brew outdated xctool || brew upgrade xctool
+script: set -o pipefail &&  xcodebuild test -project PPJEmailPickerDemo.xcodeproj -scheme PPJEmailPickerDemoTests -sdk iphonesimulator9.3 | xcpretty
