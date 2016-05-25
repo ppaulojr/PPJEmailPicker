@@ -237,9 +237,14 @@
 	[m sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
 		return [((NSString*)obj1) compare:((NSString*)obj2)];
 	}];
+	NSInteger count = (m.count > self.numberOfAutocompleteRows)?self.numberOfAutocompleteRows : m.count;
 	self.possibleStringsFiltered = m;
+	if (count == 0) {
+		[self closeDropDown];
+		return;
+	}
 	if (![self isDropDownVisible]) {
-		[self showDropDown:self.numberOfAutocompleteRows];
+		[self showDropDown:count];
 	}
 	[self.emailPickerTableView reloadData];
 }
@@ -423,8 +428,11 @@
 
 -(void) deleteBackward
 {
-	if (self.text.length == 0) {
+	NSInteger length = self.text.length;
+	if (length == 0) {
 		[self removeCurrentSelectedEmail];
+	} else if (length == 1) {
+		[self closeDropDown];
 	}
 	[super deleteBackward];
 }
@@ -452,6 +460,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
+	NSString * newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
 	if ([string isEqualToString:@" "]) {
 		NSString * add = textField.text;
 		if (add.length > 0) {
@@ -461,7 +470,7 @@
 		}
 		return NO;
 	}
-	[self filterArray:[textField.text stringByAppendingString:string]];
+	[self filterArray:newString];
 	if ([self.originalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
 		return [self.originalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
 	}
