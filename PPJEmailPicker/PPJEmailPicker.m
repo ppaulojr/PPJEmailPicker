@@ -294,6 +294,7 @@
 	[self.selectedEmailList removeObject:selectedEmailText];
 	[self.selectedEmailUI removeObject:self.currentSelectedEmail];
 	[self.currentSelectedEmail removeFromSuperview];
+	[self layoutSubviews];
 	self.currentSelectedEmail = nil;
 	if ([self.pickerDelegate respondsToSelector:@selector(picker:haveArrayOfEmails:)]) {
 		[self.pickerDelegate picker:self haveArrayOfEmails:[self.selectedEmailList copy]];
