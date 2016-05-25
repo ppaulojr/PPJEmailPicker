@@ -241,9 +241,7 @@
 	if (![self isDropDownVisible]) {
 		[self showDropDown:self.numberOfAutocompleteRows];
 	}
-	else {
-		[self.emailPickerTableView reloadData];
-	}
+	[self.emailPickerTableView reloadData];
 }
 
 #pragma mark - TableView Data Source
