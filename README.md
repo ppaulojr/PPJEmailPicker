@@ -1,4 +1,5 @@
 # PPJEmailPicker
+[![Build Status](https://travis-ci.org/ppaulojr/PPJEmailPicker.svg?branch=master)](https://travis-ci.org/ppaulojr/PPJEmailPicker)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/PPJEmailPicker.svg)](https://img.shields.io/cocoapods/v/PPJEmailPicker.svg)
 [![GitHub issues](https://img.shields.io/github/issues/ppaulojr/PPJEmailPicker.svg?style=plastic)](https://github.com/ppaulojr/PPJEmailPicker/issues) 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=plastic)](https://raw.githubusercontent.com/ppaulojr/PPJEmailPicker/master/LICENSE)
