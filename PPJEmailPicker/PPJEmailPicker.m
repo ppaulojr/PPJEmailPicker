@@ -11,6 +11,43 @@
 #define PPJEMAILPICKER_PADDING_X 5
 #define PPJEMAILPICKER_PADDING_Y 2
 
+@interface PPJUITextFieldPrivateDelegate : NSObject <UITextFieldDelegate> {
+@public
+	id<UITextFieldDelegate> _userDelegate;
+}
+@end
+
+@implementation PPJUITextFieldPrivateDelegate
+
+- (BOOL)respondsToSelector:(SEL)selector {
+	return [_userDelegate respondsToSelector:selector] || [super respondsToSelector:selector];
+}
+
+- (void)forwardInvocation:(NSInvocation *)invocation {
+	[invocation invokeWithTarget:_userDelegate];
+}
+
+#pragma mark - delegate override methods
+- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+	BOOL resp = [(PPJEmailPicker *)textField PPJ_TextField:textField shouldChangeCharactersInRange:range replacementString:string];
+	if (resp && [_userDelegate respondsToSelector:_cmd]) {
+		resp = resp && [_userDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
+	}
+	return resp;
+}
+
+-(BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+	BOOL resp = [(PPJEmailPicker *)textField PPJ_textFieldShouldReturn:textField];
+	if (resp && [_userDelegate respondsToSelector:_cmd]) {
+		resp = resp && [_userDelegate textFieldShouldReturn:textField];
+	}
+	return resp;
+}
+
+@end
+
 @interface PPJEmailPicker ()
 @property (strong, nonatomic) NSMutableArray      *selectedEmailUI;
 @property (strong, nonatomic) PPJSelectableLabel  *currentSelectedEmail;
@@ -23,7 +60,16 @@
 @property (assign, nonatomic) CGFloat              minimumHeightTextField;
 @end
 
-@implementation PPJEmailPicker
+@implementation PPJEmailPicker {
+	PPJUITextFieldPrivateDelegate * _privateDelegate;
+}
+
+#pragma mark - private delegate;
+- (void) initDelegate
+{
+	_privateDelegate = [[PPJUITextFieldPrivateDelegate alloc] init];
+	super.delegate = _privateDelegate;
+}
 
 #pragma mark - init override
 - (instancetype)init
@@ -55,6 +101,7 @@
 
 -(void) commonInit
 {
+	[self initDelegate];
 	self.tableHeight                          = 100.0f;
 	_emailPickerTableView                     = [self newEmailPickerTableViewForTextField:self];
 	self.inset                                = UIEdgeInsetsZero;
@@ -69,7 +116,6 @@
 	self.pickerTextColor                      = [UIColor foregroundDefaultColor];
 	self.pickerSelectedTextColor              = [UIColor backgroudDefaultColor];
 	self.pickerSelectedBackgroundColor        = [UIColor foregroundDefaultColor];
-	super.delegate = self;
 	[self registerNotifications];
 }
 
@@ -120,14 +166,14 @@
 #pragma mark - setters and getters
 - (void)setDelegate:(id<UITextFieldDelegate>)delegate
 {
-	[self willChangeValueForKey:@"delegate"];
-	self.originalDelegate = delegate;
-	[self didChangeValueForKey:@"delegate"];
+	_privateDelegate->_userDelegate = delegate;
+	super.delegate = nil;
+	super.delegate = _privateDelegate;
 }
 
 - (id<UITextFieldDelegate>)delegate
 {
-	return self.originalDelegate;
+	return _privateDelegate->_userDelegate;
 }
 
 -(void) setSelectedEmailList:(NSMutableArray *)selectedEmailList
@@ -420,7 +466,6 @@
 		[self restoreOriginalShadowProperties];
 		(self.emailPickerTableView.layer).shadowOpacity = 0.0;
 	}
-
 }
 
 #pragma mark -
@@ -448,22 +493,12 @@
 	return [super resignFirstResponder];
 }
 
--(BOOL) becomeFirstResponder
-{
-	BOOL superAnswer = [super becomeFirstResponder];
-	if (superAnswer) {
-//		dispatch_async(dispatch_get_main_queue(), ^{
-//			[self showDropDown:3];
-//		});
-	}
-	return superAnswer;
-}
 
 
 #pragma mark -
 #pragma mark UITextFieldDelegate
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+- (BOOL)PPJ_TextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
 	NSString * newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
 	if ([string isEqualToString:@" "]) {
@@ -476,15 +511,12 @@
 		return NO;
 	}
 	[self filterArray:newString];
-	if ([self.originalDelegate respondsToSelector:@selector(textField:shouldChangeCharactersInRange:replacementString:)]) {
-		return [self.originalDelegate textField:textField shouldChangeCharactersInRange:range replacementString:string];
-	}
 	
 	return YES;
 }
 
 
-- (BOOL)textFieldShouldReturn:(UITextField *)txtField
+- (BOOL)PPJ_textFieldShouldReturn:(UITextField *)txtField
 {
 	NSString * add = txtField.text;
 	if (add.length > 0) {
@@ -493,27 +525,6 @@
 		txtField.text = @"";
 	}
 	return NO;
-}
-
-#pragma mark -
-#pragma mark NSObject method overrides
-
-- (id)forwardingTargetForSelector:(SEL)aSelector
-{
-	if ([self.originalDelegate respondsToSelector:aSelector] && self.originalDelegate != self) {
-		return self.originalDelegate;
-	}
-	return [super forwardingTargetForSelector:aSelector];
-}
-
-- (BOOL)respondsToSelector:(SEL)aSelector
-{
-	BOOL respondsToSelector = [super respondsToSelector:aSelector];
-	
-	if (!respondsToSelector && self.originalDelegate != self) {
-		respondsToSelector = [self.originalDelegate respondsToSelector:aSelector];
-	}
-	return respondsToSelector;
 }
 
 @end

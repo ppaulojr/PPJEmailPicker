@@ -11,9 +11,8 @@
 
 @protocol PPJEmailPickerDelegate;
 
-@interface PPJEmailPicker : UITextField <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+@interface PPJEmailPicker : UITextField <UITableViewDelegate, UITableViewDataSource>
 
-@property (assign          ) id<UITextFieldDelegate>      originalDelegate;
 @property (assign          ) id<PPJEmailPickerDelegate>   pickerDelegate;
 @property (strong, readonly) UITableView                 *emailPickerTableView;
 @property (assign          ) BOOL                         emailPickerTableViewHidden;
@@ -43,6 +42,9 @@
 //@property NSString * autoCompleteRegularFontName = HelveticaNeue;
 //@property CGFloat autoCompleteFontSize = 13.0;
 //
+- (BOOL)PPJ_TextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+- (BOOL)PPJ_textFieldShouldReturn:(UITextField *)txtField;
+
 
 -(void) showDropDown:(NSInteger)numberOfRows;
 
