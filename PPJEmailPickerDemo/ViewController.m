@@ -22,6 +22,7 @@
 	[super viewDidLoad];
 	self.emailPicker.possibleStrings = [ListOfEmails emails];
 	self.emailPicker.pickerDelegate = self;
+	self.emailPicker.autoCompleteTextFont = [UIFont systemFontOfSize:22.0];
 }
 
 - (void)didReceiveMemoryWarning {

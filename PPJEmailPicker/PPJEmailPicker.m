@@ -184,6 +184,14 @@
 	}
 }
 
+- (UIFont *) autoCompleteTextFont
+{
+	if (!_autoCompleteTextFont) {
+		_autoCompleteTextFont = [UIFont systemFontOfSize:13.0f];
+	}
+	return _autoCompleteTextFont;
+}
+
 #pragma mark - layout
 -(void) layoutSubviews
 {
@@ -252,6 +260,7 @@
 		PPJSelectableLabel * lbl = [[PPJSelectableLabel alloc] init];
 		[lbl setTitle:s forState:UIControlStateNormal];
 		[lbl setTitleColor:self.pickerSelectedTextColor forState:UIControlStateNormal];
+		lbl.titleLabel.font = self.autoCompleteTextFont;
 		[lbl sizeToFit];
 		[self.selectedEmailUI addObject:lbl];
 		[self addSubview:lbl];
@@ -326,6 +335,7 @@
 	PPJSelectableLabel * lbl = [[PPJSelectableLabel alloc] init];
 	[lbl setTitle:str forState:UIControlStateNormal];
 	[lbl setTitleColor:self.pickerTextColor forState:UIControlStateNormal];
+	lbl.titleLabel.font = self.autoCompleteTextFont;
 	[lbl sizeToFit];
 	[self.selectedEmailUI addObject:lbl];
 	[self addSubview:lbl];

@@ -13,41 +13,33 @@
 
 @interface PPJEmailPicker : UITextField <UITableViewDelegate, UITableViewDataSource>
 
-@property (assign          ) id<PPJEmailPickerDelegate>   pickerDelegate;
-@property (strong, readonly) UITableView                 *emailPickerTableView;
-@property (assign          ) BOOL                         emailPickerTableViewHidden;
-@property (assign          ) BOOL                         makeTextFieldDropShadowWithAutoCompleteTableOpen;
-@property (assign          ) CGRect                       emailPickerTableViewFrame;
-@property (assign          ) CGFloat                      tableHeight;
-@property (copy, nonatomic ) NSMutableArray              *selectedEmailList;
-@property (copy, nonatomic ) NSArray                     *possibleStrings;
-@property (assign          ) CGFloat                      minimumHeight;
-@property (assign          ) CGFloat                      autoCompleteRowHeight;
-@property (assign          ) NSInteger                    numberOfAutocompleteRows;
-@property (strong          ) UIColor					 *autoCompleteTableCellTextColor;
-@property (strong          ) UIColor					 *autoCompleteTableCellBackgroundColor;
-@property (strong          ) UIColor					 *pickerBackgroundColor;
-@property (strong          ) UIColor					 *pickerTextColor;
-@property (strong          ) UIColor					 *pickerSelectedTextColor;
-@property (strong          ) UIColor					 *pickerSelectedBackgroundColor;
+@property (assign, nonatomic) id<PPJEmailPickerDelegate>   pickerDelegate;
+@property (strong, readonly ) UITableView                 *emailPickerTableView;
+@property (assign, nonatomic) BOOL                         emailPickerTableViewHidden;
+@property (assign, nonatomic) BOOL                         makeTextFieldDropShadowWithAutoCompleteTableOpen;
+@property (assign, nonatomic) CGRect                       emailPickerTableViewFrame;
+@property (assign, nonatomic) CGFloat                      tableHeight;
+@property (copy,  nonatomic ) NSMutableArray              *selectedEmailList;
+@property (copy,  nonatomic ) NSArray                     *possibleStrings;
+@property (assign, nonatomic) CGFloat                      minimumHeight;
+@property (assign, nonatomic) CGFloat                      autoCompleteRowHeight;
+@property (assign, nonatomic) NSInteger                    numberOfAutocompleteRows;
+@property (strong, nonatomic) UIColor                     *autoCompleteTableCellTextColor;
+@property (strong, nonatomic) UIColor                     *autoCompleteTableCellBackgroundColor;
+@property (strong, nonatomic) UIColor                     *pickerBackgroundColor;
+@property (strong, nonatomic) UIColor                     *pickerTextColor;
+@property (strong, nonatomic) UIColor                     *pickerSelectedTextColor;
+@property (strong, nonatomic) UIColor                     *pickerSelectedBackgroundColor;
+@property (strong, nonatomic) UIFont                      *autoCompleteTextFont;
 
 
-
-
-
-
-
-
-
-//@property NSString * autoCompleteRegularFontName = HelveticaNeue;
-//@property CGFloat autoCompleteFontSize = 13.0;
 //
 - (BOOL)PPJ_TextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 - (BOOL)PPJ_textFieldShouldReturn:(UITextField *)txtField;
 
 
 -(void) showDropDown:(NSInteger)numberOfRows;
-
+-(void) renderList;
 
 @end
 
