@@ -51,6 +51,8 @@ pod 'PPJEmailPicker'
 
 Add a `UITextField` and change the class to `PPJEmailPicker`.
 
+![ibchange](https://cloud.githubusercontent.com/assets/1206478/15744061/16973db4-28a0-11e6-979a-dd88d5b89820.png)
+
 Don't forget to set the `pickerDelegate` and to pass a list of e-mails for autocompletion.
 
 ## Questions
