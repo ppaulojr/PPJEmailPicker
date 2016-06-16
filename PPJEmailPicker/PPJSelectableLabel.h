@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface PPJSelectableLabel : UIButton
-@property (strong) UIColor  *labelBackgroundColor;
-@property (strong) UIColor  *labelTextColor;
-@property (strong) UIColor  *labelSelectedTextColor;
-@property (strong) UIColor  *labelSelectedBackgroundColor;
+@property (nonatomic, strong) UIColor  *labelBackgroundColor;
+@property (nonatomic, strong) UIColor  *labelTextColor;
+@property (nonatomic, strong) UIColor  *labelSelectedTextColor;
+@property (nonatomic, strong) UIColor  *labelSelectedBackgroundColor;
 -(void) deselect;
 @end

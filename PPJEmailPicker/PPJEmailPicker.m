@@ -258,6 +258,10 @@
 	self.selectedEmailUI = [@[] mutableCopy];
 	for (NSString * s in self.selectedEmailList) {
 		PPJSelectableLabel * lbl = [[PPJSelectableLabel alloc] init];
+		lbl.labelTextColor = self.pickerTextColor;
+		lbl.backgroundColor = self.pickerBackgroundColor;
+		lbl.labelSelectedTextColor = self.pickerSelectedTextColor;
+		lbl.labelSelectedBackgroundColor = self.pickerSelectedBackgroundColor;
 		[lbl setTitle:s forState:UIControlStateNormal];
 		[lbl setTitleColor:self.pickerSelectedTextColor forState:UIControlStateNormal];
 		lbl.titleLabel.font = self.autoCompleteTextFont;
@@ -333,6 +337,10 @@
 {
 	[self.selectedEmailList addObject:str];
 	PPJSelectableLabel * lbl = [[PPJSelectableLabel alloc] init];
+	lbl.labelTextColor = self.pickerTextColor;
+	lbl.labelBackgroundColor = self.pickerBackgroundColor;
+	lbl.labelSelectedTextColor = self.pickerSelectedTextColor;
+	lbl.labelSelectedBackgroundColor = self.pickerSelectedBackgroundColor;
 	[lbl setTitle:str forState:UIControlStateNormal];
 	[lbl setTitleColor:self.pickerTextColor forState:UIControlStateNormal];
 	lbl.titleLabel.font = self.autoCompleteTextFont;

@@ -37,6 +37,19 @@
 	}
 }
 
+
+-(void) setLabelTextColor:(UIColor *)labelTextColor
+{
+	_labelTextColor = labelTextColor;
+	self.titleLabel.textColor = _labelTextColor;
+}
+
+-(void) setLabelBackgroundColor:(UIColor *)labelBackgroundColor
+{
+	_labelBackgroundColor = labelBackgroundColor;
+	self.layer.backgroundColor = [_labelBackgroundColor CGColor];
+}
+
 -(void) commonInit
 {
 	[self addTarget:self action:@selector(didTouchButton) forControlEvents:UIControlEventTouchUpInside];
@@ -45,8 +58,6 @@
 	self.labelTextColor = [UIColor foregroundDefaultColor];
 	self.labelSelectedTextColor = [UIColor backgroudDefaultColor];
 	self.labelSelectedBackgroundColor = [UIColor foregroundDefaultColor];
-	self.layer.backgroundColor = (self.labelBackgroundColor).CGColor;
-	self.titleLabel.textColor = self.labelTextColor;
 	self.titleLabel.font = [UIFont systemFontOfSize:13.0f];
 	self.contentEdgeInsets = UIEdgeInsetsMake(1.0, 5.0, 1.0, 5.0);
 }

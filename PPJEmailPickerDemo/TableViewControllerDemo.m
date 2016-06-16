@@ -22,14 +22,16 @@
 	actf.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	actf.font = [UIFont systemFontOfSize:14.0];
 	actf.autocorrectionType = UITextAutocorrectionTypeNo;
-//	actf.textColor = [UIColor greenColor];
-//	actf.backgroundColor = [UIColor clearColor];
 	actf.pickerDelegate = self;
 	actf.emailPickerTableView.clipsToBounds = YES;
 	// Cells and Table color
-//	actf.emailPickerTableView.backgroundColor = [UIColor whiteColor];
 	actf.possibleStrings = [[ListOfEmails emails] mutableCopy];
 	actf.placeholder = NSLocalizedString(@"Type e-mail to send recognition", nil);
+	
+	actf.pickerTextColor = [UIColor colorWithRed:0.9 green:0.8 blue:0.9 alpha:1.0];
+	actf.pickerBackgroundColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.2 alpha:1.0];
+	actf.pickerSelectedTextColor = [UIColor colorWithRed:0.9 green:0.95 blue:0.7 alpha:1.0];
+	actf.pickerSelectedBackgroundColor = [UIColor colorWithRed:0.7 green:0.25 blue:0.15 alpha:1.0];
 	return actf;
 }
 
