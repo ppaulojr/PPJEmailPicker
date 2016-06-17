@@ -58,6 +58,7 @@
 @property (assign, nonatomic) CGSize               originalShadowOffset;
 @property (assign, nonatomic) CGFloat              originalShadowOpacity;
 @property (assign, nonatomic) CGFloat              minimumHeightTextField;
+@property (copy,   nonatomic) NSString            *tmpPlaceholder;
 @end
 
 @implementation PPJEmailPicker {
@@ -176,6 +177,20 @@
 	return _privateDelegate->_userDelegate;
 }
 
+- (NSString *) placeholder
+{
+    return super.placeholder;
+}
+
+- (void) setPlaceholder:(NSString *)placeholder
+{
+    if (super.placeholder != nil)
+    {
+        _tmpPlaceholder = super.placeholder;
+    }
+    super.placeholder = placeholder;
+}
+
 -(void) setSelectedEmailList:(NSMutableArray *)selectedEmailList
 {
 	if (![_selectedEmailList isEqual:selectedEmailList]) {
@@ -268,7 +283,10 @@
 		[lbl sizeToFit];
 		[self.selectedEmailUI addObject:lbl];
 		[self addSubview:lbl];
-	}
+        if (!self.showPlaceholderWhileEditing) {
+            self.placeholder = nil;
+        }
+    }
 }
 
 #pragma mark - Filter Array
@@ -347,6 +365,9 @@
 	[lbl sizeToFit];
 	[self.selectedEmailUI addObject:lbl];
 	[self addSubview:lbl];
+    if (!self.showPlaceholderWhileEditing) {
+        self.placeholder = nil;
+    }
 	if ([self.pickerDelegate respondsToSelector:@selector(picker:haveArrayOfEmails:)]) {
 		[self.pickerDelegate picker:self haveArrayOfEmails:[self.selectedEmailList copy]];
 	}
@@ -363,6 +384,11 @@
 	[self.currentSelectedEmail removeFromSuperview];
 	[self layoutSubviews];
 	self.currentSelectedEmail = nil;
+    if (self.selectedEmailUI.count == 0) {
+        if (!self.showPlaceholderWhileEditing) {
+            super.placeholder = self.tmpPlaceholder;
+        }
+    }
 	if ([self.pickerDelegate respondsToSelector:@selector(picker:haveArrayOfEmails:)]) {
 		[self.pickerDelegate picker:self haveArrayOfEmails:[self.selectedEmailList copy]];
 	}

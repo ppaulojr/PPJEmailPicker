@@ -27,6 +27,7 @@
 	// Cells and Table color
 	actf.possibleStrings = [[ListOfEmails emails] mutableCopy];
 	actf.placeholder = NSLocalizedString(@"Type e-mail to send recognition", nil);
+    actf.showPlaceholderWhileEditing = YES;
 	
 	actf.pickerTextColor = [UIColor colorWithRed:0.9 green:0.8 blue:0.9 alpha:1.0];
 	actf.pickerBackgroundColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.2 alpha:1.0];
