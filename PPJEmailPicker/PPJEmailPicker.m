@@ -278,7 +278,7 @@
 		lbl.labelSelectedTextColor = self.pickerSelectedTextColor;
 		lbl.labelSelectedBackgroundColor = self.pickerSelectedBackgroundColor;
 		[lbl setTitle:s forState:UIControlStateNormal];
-		[lbl setTitleColor:self.pickerSelectedTextColor forState:UIControlStateNormal];
+		[lbl setTitleColor:self.pickerTextColor forState:UIControlStateNormal];
 		lbl.titleLabel.font = self.autoCompleteTextFont;
 		[lbl sizeToFit];
 		[self.selectedEmailUI addObject:lbl];
