@@ -103,7 +103,9 @@
 -(void) commonInit
 {
 	[self initDelegate];
-	self.tableHeight                          = 100.0f;
+  self.autocorrectionType                   = UITextAutocorrectionTypeNo;
+  self.keyboardType                         = UIKeyboardTypeEmailAddress;
+  self.autocapitalizationType               = UITextAutocapitalizationTypeNone;
 	_emailPickerTableView                     = [self newEmailPickerTableViewForTextField:self];
 	self.inset                                = UIEdgeInsetsZero;
 	self.selectedEmailUI                      = [@[] mutableCopy];
@@ -320,10 +322,9 @@
 		[self closeDropDown];
 		return;
 	}
-	if (![self isDropDownVisible]) {
-		[self showDropDown:count];
-	}
+  [self showDropDown:count];
 	[self.emailPickerTableView reloadData];
+  [self.emailPickerTableView flashScrollIndicators];
 }
 
 #pragma mark - TableView Data Source
@@ -334,7 +335,7 @@
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return (self.possibleStringsFiltered.count > 3)?3:self.possibleStringsFiltered.count;
+	return self.possibleStringsFiltered.count;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -438,7 +439,7 @@
 		frame.origin.y += textField.frame.size.height;
 	}
 	
-	frame.size.height += textField.tableHeight;
+	frame.size.height = MIN(textField.numberOfAutocompleteRows, [textField.emailPickerTableView.dataSource tableView:textField.emailPickerTableView numberOfRowsInSection:0]) * textField.autoCompleteRowHeight;
 	frame = CGRectInset(frame, 1, 0);
 	
 	return frame;

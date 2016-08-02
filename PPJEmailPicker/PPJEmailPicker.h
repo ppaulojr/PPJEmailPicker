@@ -18,7 +18,6 @@
 @property (assign, nonatomic) BOOL                         emailPickerTableViewHidden;
 @property (assign, nonatomic) BOOL                         makeTextFieldDropShadowWithAutoCompleteTableOpen;
 @property (assign, nonatomic) CGRect                       emailPickerTableViewFrame;
-@property (assign, nonatomic) CGFloat                      tableHeight;
 @property (copy,  nonatomic ) NSMutableArray              *selectedEmailList;
 @property (copy,  nonatomic ) NSArray                     *possibleStrings;
 @property (assign, nonatomic) CGFloat                      minimumHeight;
