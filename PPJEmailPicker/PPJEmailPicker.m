@@ -306,7 +306,7 @@
 	filter = filter.lowercaseString;
 	NSMutableArray *m = [NSMutableArray array];
 	for (NSString * string in self.possibleStrings) {
-		if ([string hasPrefix:filter])
+		if ([[string lowercaseString] hasPrefix:filter])
 		{
 			[m addObject:string];
 		}
