@@ -8,6 +8,7 @@
 
 #import "PPJEmailPicker.h"
 #import "PPJCommon.h"
+#import "NSString+PPJEmailValidation.h"
 #define PPJEMAILPICKER_PADDING_X 5
 #define PPJEMAILPICKER_PADDING_Y 2
 
@@ -44,6 +45,15 @@
 		resp = resp && [_userDelegate textFieldShouldReturn:textField];
 	}
 	return resp;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+  BOOL resp = [(PPJEmailPicker *)textField PPJ_textFieldShouldEndEditing:textField];
+  if (resp && [_userDelegate respondsToSelector:_cmd]) {
+    resp = resp && [_userDelegate textFieldShouldEndEditing:textField];
+  }
+  return resp;
 }
 
 @end
@@ -103,7 +113,9 @@
 -(void) commonInit
 {
 	[self initDelegate];
-	self.tableHeight                          = 100.0f;
+  self.autocorrectionType                   = UITextAutocorrectionTypeNo;
+  self.keyboardType                         = UIKeyboardTypeEmailAddress;
+  self.autocapitalizationType               = UITextAutocapitalizationTypeNone;
 	_emailPickerTableView                     = [self newEmailPickerTableViewForTextField:self];
 	self.inset                                = UIEdgeInsetsZero;
 	self.selectedEmailUI                      = [@[] mutableCopy];
@@ -306,7 +318,7 @@
 	filter = filter.lowercaseString;
 	NSMutableArray *m = [NSMutableArray array];
 	for (NSString * string in self.possibleStrings) {
-		if ([string hasPrefix:filter])
+		if ([[string lowercaseString] hasPrefix:filter])
 		{
 			[m addObject:string];
 		}
@@ -320,10 +332,9 @@
 		[self closeDropDown];
 		return;
 	}
-	if (![self isDropDownVisible]) {
-		[self showDropDown:count];
-	}
+  [self showDropDown:count];
 	[self.emailPickerTableView reloadData];
+  [self.emailPickerTableView flashScrollIndicators];
 }
 
 #pragma mark - TableView Data Source
@@ -334,7 +345,7 @@
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	return (self.possibleStringsFiltered.count > 3)?3:self.possibleStringsFiltered.count;
+	return self.possibleStringsFiltered.count;
 }
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -438,7 +449,7 @@
 		frame.origin.y += textField.frame.size.height;
 	}
 	
-	frame.size.height += textField.tableHeight;
+	frame.size.height = MIN(textField.numberOfAutocompleteRows, [textField.emailPickerTableView.dataSource tableView:textField.emailPickerTableView numberOfRowsInSection:0]) * textField.autoCompleteRowHeight;
 	frame = CGRectInset(frame, 1, 0);
 	
 	return frame;
@@ -569,6 +580,17 @@
 		txtField.text = @"";
 	}
 	return NO;
+}
+
+- (BOOL)PPJ_textFieldShouldEndEditing:(UITextField *)txtField
+{
+  NSString * add = txtField.text;
+  if ([add isValidEmail]) {
+    [self addString:add];
+    [self closeDropDown];
+    txtField.text = @"";
+  }
+  return YES;
 }
 
 @end
