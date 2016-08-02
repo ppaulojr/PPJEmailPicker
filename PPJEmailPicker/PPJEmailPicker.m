@@ -8,6 +8,7 @@
 
 #import "PPJEmailPicker.h"
 #import "PPJCommon.h"
+#import "NSString+PPJEmailValidation.h"
 #define PPJEMAILPICKER_PADDING_X 5
 #define PPJEMAILPICKER_PADDING_Y 2
 
@@ -44,6 +45,15 @@
 		resp = resp && [_userDelegate textFieldShouldReturn:textField];
 	}
 	return resp;
+}
+
+- (BOOL)textFieldShouldEndEditing:(UITextField *)textField
+{
+  BOOL resp = [(PPJEmailPicker *)textField PPJ_textFieldShouldEndEditing:textField];
+  if (resp && [_userDelegate respondsToSelector:_cmd]) {
+    resp = resp && [_userDelegate textFieldShouldEndEditing:textField];
+  }
+  return resp;
 }
 
 @end
@@ -570,6 +580,17 @@
 		txtField.text = @"";
 	}
 	return NO;
+}
+
+- (BOOL)PPJ_textFieldShouldEndEditing:(UITextField *)txtField
+{
+  NSString * add = txtField.text;
+  if ([add isValidEmail]) {
+    [self addString:add];
+    [self closeDropDown];
+    txtField.text = @"";
+  }
+  return YES;
 }
 
 @end

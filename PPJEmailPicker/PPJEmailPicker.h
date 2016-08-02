@@ -36,6 +36,7 @@
 //
 - (BOOL)PPJ_TextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 - (BOOL)PPJ_textFieldShouldReturn:(UITextField *)txtField;
+- (BOOL)PPJ_textFieldShouldEndEditing:(UITextField *)txtField;
 
 
 -(void) showDropDown:(NSInteger)numberOfRows;
