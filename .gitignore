@@ -20,6 +20,7 @@ DerivedData
 *.xccheckout
 *.moved-aside
 *.xcuserstate
+*/xcuserdata/*
 *.xcscmblueprint
 
 ## Obj-C/Swift specific
