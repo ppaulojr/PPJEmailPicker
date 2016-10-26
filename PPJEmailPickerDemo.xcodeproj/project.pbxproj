@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		661EBBD31D50BA8700F03F07 /* NSString+PPJEmailValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 661EBBD11D50BA8700F03F07 /* NSString+PPJEmailValidation.m */; };
 		9F0D9B661CEB69A700B2635E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B651CEB69A700B2635E /* main.m */; };
 		9F0D9B691CEB69A700B2635E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B681CEB69A700B2635E /* AppDelegate.m */; };
 		9F0D9B6C1CEB69A700B2635E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0D9B6B1CEB69A700B2635E /* ViewController.m */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		661EBBD11D50BA8700F03F07 /* NSString+PPJEmailValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PPJEmailValidation.m"; path = "PPJEmailPicker/NSString+PPJEmailValidation.m"; sourceTree = SOURCE_ROOT; };
+		661EBBD21D50BA8700F03F07 /* NSString+PPJEmailValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PPJEmailValidation.h"; path = "PPJEmailPicker/NSString+PPJEmailValidation.h"; sourceTree = SOURCE_ROOT; };
 		9F0D9B611CEB69A700B2635E /* PPJEmailPickerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PPJEmailPickerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F0D9B651CEB69A700B2635E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9F0D9B671CEB69A700B2635E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 		9F0D9B971CEB69BE00B2635E /* PPJEmailPicker */ = {
 			isa = PBXGroup;
 			children = (
+				661EBBD11D50BA8700F03F07 /* NSString+PPJEmailValidation.m */,
+				661EBBD21D50BA8700F03F07 /* NSString+PPJEmailValidation.h */,
 				9F598B2D1CF4E1C9004245CB /* PPJCommon.h */,
 				9F0D9B981CEB6A0C00B2635E /* PPJEmailPicker.h */,
 				9F0D9B991CEB6A0C00B2635E /* PPJEmailPicker.m */,
@@ -315,6 +320,7 @@
 				9F0D9B6C1CEB69A700B2635E /* ViewController.m in Sources */,
 				9F20436A1CEB928D0031F557 /* PPJSelectableLabel.m in Sources */,
 				9F0D9B691CEB69A700B2635E /* AppDelegate.m in Sources */,
+				661EBBD31D50BA8700F03F07 /* NSString+PPJEmailValidation.m in Sources */,
 				9F598B211CF336F7004245CB /* ListOfEmails.m in Sources */,
 				9F0D9B661CEB69A700B2635E /* main.m in Sources */,
 				9F0D9B9A1CEB6A0C00B2635E /* PPJEmailPicker.m in Sources */,
