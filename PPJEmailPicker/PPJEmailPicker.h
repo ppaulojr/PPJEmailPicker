@@ -31,6 +31,7 @@
 @property (strong, nonatomic) UIColor                     *pickerSelectedBackgroundColor;
 @property (strong, nonatomic) UIFont                      *autoCompleteTextFont;
 @property (assign, nonatomic) BOOL                         showPlaceholderWhileEditing;
+@property (strong, readonly, nonatomic) NSString          * emailOnlyText;
 
 
 //

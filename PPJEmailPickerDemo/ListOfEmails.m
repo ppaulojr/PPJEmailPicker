@@ -16,7 +16,8 @@
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
 		_emails = @[
-		  @"anthony.dowd@gmail.com",
+		  @"Antony Dowd<anthony.dowd@gmail.com>",
+          @"John Rambo<jrr@army.mil>",
 		  @"joshua.fraser@gmail.com",
 		  @"anna.jones@gmail.com",
 		  @"sally.piper@gmail.com",

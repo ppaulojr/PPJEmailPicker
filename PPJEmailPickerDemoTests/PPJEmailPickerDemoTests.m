@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "PPJEmailPicker.h"
+#import "NSString+PPJEmailValidation.h"
 
 @interface PPJEmailPickerDemoTests : XCTestCase
 @property (strong, nonatomic) PPJEmailPicker *email;
@@ -37,6 +38,18 @@
 - (void) testAccessibility {
 	self.email.text = @"Hello";
 	XCTAssert([self.email.accessibilityLabel isEqualToString:@"Hello"]);
+}
+
+- (void) testStringSanitation
+{
+    NSString * sanitize = @"John Rambo<jrr@army.mil>";
+    XCTAssert([[sanitize sanitizeString] isEqualToString:@"jrr@army.mil"]);
+}
+
+- (void) testStringPartialSanitation
+{
+    NSString * sanitize = @"John Rambo<jrr@army.mil";
+    XCTAssert([[sanitize sanitizeString] isEqualToString:@"jrr@army.mil"]);
 }
 
 @end

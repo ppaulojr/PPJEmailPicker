@@ -113,9 +113,9 @@
 -(void) commonInit
 {
 	[self initDelegate];
-  self.autocorrectionType                   = UITextAutocorrectionTypeNo;
-  self.keyboardType                         = UIKeyboardTypeEmailAddress;
-  self.autocapitalizationType               = UITextAutocapitalizationTypeNone;
+    self.autocorrectionType                   = UITextAutocorrectionTypeNo;
+    self.keyboardType                         = UIKeyboardTypeEmailAddress;
+    self.autocapitalizationType               = UITextAutocapitalizationTypeNone;
 	_emailPickerTableView                     = [self newEmailPickerTableViewForTextField:self];
 	self.inset                                = UIEdgeInsetsZero;
 	self.selectedEmailUI                      = [@[] mutableCopy];
@@ -209,6 +209,11 @@
 		_selectedEmailList = [selectedEmailList mutableCopy];
 		[self renderList];
 	}
+}
+
+-(NSString *) emailOnlyText
+{
+    return self.text;
 }
 
 - (UIFont *) autoCompleteTextFont
@@ -318,7 +323,7 @@
 	filter = filter.lowercaseString;
 	NSMutableArray *m = [NSMutableArray array];
 	for (NSString * string in self.possibleStrings) {
-		if ([[string lowercaseString] hasPrefix:filter])
+		if ([[string lowercaseString] rangeOfString:filter].location != NSNotFound)
 		{
 			[m addObject:string];
 		}
@@ -333,7 +338,7 @@
 		return;
 	}
   [self showDropDown:count];
-	[self.emailPickerTableView reloadData];
+  [self.emailPickerTableView reloadData];
   [self.emailPickerTableView flashScrollIndicators];
 }
 
@@ -364,6 +369,7 @@
 #pragma mark - Add and Delete emails
 - (void) addString:(NSString *)str
 {
+    str = [str sanitizeString];
 	[self.selectedEmailList addObject:str];
 	PPJSelectableLabel * lbl = [[PPJSelectableLabel alloc] init];
 	lbl.labelTextColor = self.pickerTextColor;

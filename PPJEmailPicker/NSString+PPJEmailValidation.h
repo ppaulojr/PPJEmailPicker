@@ -9,5 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSString (PPJEmailValidation)
-- (BOOL)isValidEmail;
+- (BOOL) isValidEmail;
+- (NSString *) sanitizeString;
 @end

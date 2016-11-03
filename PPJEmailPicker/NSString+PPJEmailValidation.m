@@ -17,4 +17,22 @@
   BOOL isValid = [emailPredicate evaluateWithObject:self];
   return isValid;
 }
+
+- (NSString *) sanitizeString
+{
+    NSRange range = [self rangeOfString:@"<"];
+    if (range.location != NSNotFound)
+    {
+        NSString *result = [self stringByReplacingCharactersInRange:NSMakeRange(0, range.location + 1) withString:@""];
+        range = [result rangeOfString:@">"];
+        if (range.location != NSNotFound)
+        {
+            result = [result stringByReplacingCharactersInRange:range withString:@""];
+            return result;
+        }
+        return result;
+    }
+    return self;
+}
+
 @end
