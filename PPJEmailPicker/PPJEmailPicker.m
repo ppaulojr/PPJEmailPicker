@@ -323,7 +323,8 @@
 	filter = filter.lowercaseString;
 	NSMutableArray *m = [NSMutableArray array];
 	for (NSString * string in self.possibleStrings) {
-		if ([[string lowercaseString] rangeOfString:filter].location != NSNotFound)
+        BOOL exists = [self.selectedEmailList filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF contains[c] %@", [string sanitizeString]]].count > 0;
+        if (([[string lowercaseString] rangeOfString:filter].location != NSNotFound) && (!exists))
 		{
 			[m addObject:string];
 		}
