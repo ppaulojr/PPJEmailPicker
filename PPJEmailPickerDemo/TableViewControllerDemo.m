@@ -48,7 +48,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (indexPath.row == 0){
-		return 44 + self.autocompleteHeight;
+        return MAX(44, self.autocompleteHeight);
 	}else {
 		return 44;
 	}
@@ -95,6 +95,14 @@
 
 -(void) picker:(PPJEmailPicker *)picker changedHeight:(CGFloat)height
 {
-	self.autocompleteHeight = height;
+    _autocompleteHeight = height;
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.15 animations:^{
+            [weakSelf.tableView beginUpdates];
+            [weakSelf.tableView endUpdates];
+        }];
+    });
 }
+
 @end

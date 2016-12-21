@@ -122,6 +122,7 @@
 	self.selectedEmailList                    = [@[] mutableCopy];
 	self.numberOfAutocompleteRows             = 3;
 	self.autoCompleteRowHeight                = 44.0f;
+    self.minimumHeightTextField               = 44.0f;
 	self.autoCompleteTableCellTextColor       = [UIColor blackColor];
 	self.autoCompleteTableCellBackgroundColor = [UIColor clearColor];
 	self.emailPickerTableView.clipsToBounds   = YES;
@@ -253,16 +254,16 @@
 									  lastElem.frame.origin.x + lastElem.frame.size.width,
 									  0.0, 0.0);
 		CGFloat height = lastElem.frame.origin.y + lastElem.frame.size.height + 2;
-		height = (height > 30)? height : 30;
-		if (height == 30) {
-			for (PPJSelectableLabel * lbl in self.selectedEmailUI) {
-				lbl.frame = CGRectMake(lbl.frame.origin.x,
-									   (30.0f - lbl.frame.size.height) / 2,
-									   lbl.frame.size.width,
-									   lbl.frame.size.height);
-			}
-		}
-		finalFrame.size = CGSizeMake(finalFrame.size.width, height);
+        height = (height > self.minimumHeightTextField)? height : self.minimumHeightTextField;
+        if (height == self.minimumHeightTextField) {
+            for (PPJSelectableLabel * lbl in self.selectedEmailUI) {
+                lbl.frame = CGRectMake(lbl.frame.origin.x,
+                                       (self.minimumHeightTextField - lbl.frame.size.height) / 2,
+                                       lbl.frame.size.width,
+                                       lbl.frame.size.height);
+            }
+        }
+        finalFrame.size = CGSizeMake(finalFrame.size.width, height);
 	}
 	
 	self.frame = finalFrame;
@@ -271,7 +272,12 @@
 
 // placeholder position
 - (CGRect)textRectForBounds:(CGRect)bounds {
-	return UIEdgeInsetsInsetRect([super textRectForBounds:bounds], self.inset);
+    CGRect rect = UIEdgeInsetsInsetRect([super textRectForBounds:bounds], self.inset);
+    PPJSelectableLabel *lastElem = self.selectedEmailUI.lastObject;
+    if (lastElem){
+        rect.origin.y = floorf(CGRectGetMidY(lastElem.frame) - CGRectGetHeight(rect)/2);
+    }
+    return rect;
 }
 
 // text position
@@ -400,7 +406,7 @@
 	[self.selectedEmailList removeObject:selectedEmailText];
 	[self.selectedEmailUI removeObject:self.currentSelectedEmail];
 	[self.currentSelectedEmail removeFromSuperview];
-	[self layoutSubviews];
+	[self layoutIfNeeded];
 	self.currentSelectedEmail = nil;
     if (self.selectedEmailUI.count == 0) {
         if (!self.showPlaceholderWhileEditing) {
@@ -410,6 +416,10 @@
 	if ([self.pickerDelegate respondsToSelector:@selector(picker:haveArrayOfEmails:)]) {
 		[self.pickerDelegate picker:self haveArrayOfEmails:[self.selectedEmailList copy]];
 	}
+    if ([self.pickerDelegate respondsToSelector:@selector(picker:changedHeight:)]) {
+        CGFloat height = CGRectGetMaxY(self.frame);
+        [self.pickerDelegate picker:self changedHeight:height];
+    }
 }
 
 #pragma mark -
@@ -422,6 +432,7 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	[self addString:self.possibleStringsFiltered[indexPath.row]];
+    [self layoutIfNeeded];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 	self.text = @"";
 	[self filterArray:@""];
@@ -484,8 +495,8 @@
 		[self.pickerDelegate picker:self displayCompletionStateChange:NO];
 	}
 	if ([self.pickerDelegate respondsToSelector:@selector(picker:changedHeight:)]) {
-		CGFloat diff = self.frame.size.height - 30.0;
-		[self.pickerDelegate picker:self changedHeight:diff];
+        CGFloat height = CGRectGetMaxY(self.frame);
+        [self.pickerDelegate picker:self changedHeight:height];
 	}
 }
 
@@ -520,8 +531,8 @@
 			[self.pickerDelegate picker:self displayCompletionStateChange:YES];
 		}
 		if ([self.pickerDelegate respondsToSelector:@selector(picker:changedHeight:)]) {
-			CGFloat diff = self.frame.size.height - 30.0;
-			[self.pickerDelegate picker:self changedHeight:diff + numberOfRows*self.autoCompleteRowHeight];
+            CGFloat height = CGRectGetMaxY(self.frame);
+            [self.pickerDelegate picker:self changedHeight:height + numberOfRows*self.autoCompleteRowHeight];
 		}
 	} else {
 		[self closeDropDown];
