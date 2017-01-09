@@ -578,6 +578,7 @@
 		NSString * add = textField.text;
 		if (add.length > 0) {
 			[self addString:add];
+            [self layoutIfNeeded];
 			[self closeDropDown];
 			textField.text = @"";
 		}
@@ -594,6 +595,7 @@
 	NSString * add = txtField.text;
 	if (add.length > 0) {
 		[self addString:add];
+        [self layoutIfNeeded];
 		[self closeDropDown];
 		txtField.text = @"";
 	}
@@ -605,6 +607,7 @@
   NSString * add = txtField.text;
   if ([add isValidEmail]) {
     [self addString:add];
+    [self layoutIfNeeded];
     [self closeDropDown];
     txtField.text = @"";
   }
