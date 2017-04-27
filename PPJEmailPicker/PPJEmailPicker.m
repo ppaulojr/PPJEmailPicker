@@ -130,6 +130,7 @@
 	self.pickerTextColor                      = [UIColor foregroundDefaultColor];
 	self.pickerSelectedTextColor              = [UIColor backgroudDefaultColor];
 	self.pickerSelectedBackgroundColor        = [UIColor foregroundDefaultColor];
+    self.ignoreSpaceAsSeparator               = NO;
 	[self registerNotifications];
 }
 
@@ -574,7 +575,7 @@
 - (BOOL)PPJ_TextField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
 	NSString * newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
-	if ([string isEqualToString:@" "]) {
+	if ([string isEqualToString:@" "] && !self.ignoreSpaceAsSeparator) {
 		NSString * add = textField.text;
 		if (add.length > 0) {
 			[self addString:add];
