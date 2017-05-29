@@ -1,7 +1,7 @@
 language: objective-c
 xcode_project: PPJEmailPickerDemo.xcodeproj 
 xcode_scheme: PPJEmailPickerDemoTests
-osx_image: xcode83
+osx_image: xcode8.3
 xcode_sdk: iphonesimulator
 before_install:
   - brew update

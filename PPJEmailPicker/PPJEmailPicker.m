@@ -345,9 +345,11 @@
 		[self closeDropDown];
 		return;
 	}
-  [self showDropDown:count];
-  [self.emailPickerTableView reloadData];
-  [self.emailPickerTableView flashScrollIndicators];
+	[self showDropDown:count];
+	[self setNeedsLayout];
+	[self layoutIfNeeded];
+	[self.emailPickerTableView reloadData];
+	[self.emailPickerTableView flashScrollIndicators];
 }
 
 #pragma mark - TableView Data Source
