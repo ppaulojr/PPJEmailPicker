@@ -434,6 +434,11 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.row >= self.possibleStrings.count)
+    {
+        return;
+    }
+    
 	[self addString:self.possibleStringsFiltered[indexPath.row]];
     [self layoutIfNeeded];
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
