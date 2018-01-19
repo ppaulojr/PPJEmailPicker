@@ -267,8 +267,13 @@
         finalFrame.size = CGSizeMake(finalFrame.size.width, height);
 	}
 	
-	self.frame = finalFrame;
-	self.emailPickerTableView.frame = [self emailPickerTableViewFrameForTextField:self];
+    BOOL heightChanged = CGRectGetHeight(self.frame) != CGRectGetHeight(finalFrame);
+    self.frame = finalFrame;
+    self.emailPickerTableView.frame = [self emailPickerTableViewFrameForTextField:self];
+    if (heightChanged && [self.pickerDelegate respondsToSelector:@selector(picker:changedHeight:)]) {
+        CGFloat height = CGRectGetHeight(finalFrame);
+        [self.pickerDelegate picker:self changedHeight:height];
+    }
 }
 
 // placeholder position
