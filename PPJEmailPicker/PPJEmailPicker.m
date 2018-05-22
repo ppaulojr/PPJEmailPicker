@@ -24,8 +24,19 @@
 	return [_userDelegate respondsToSelector:selector] || [super respondsToSelector:selector];
 }
 
-- (void)forwardInvocation:(NSInvocation *)invocation {
-	[invocation invokeWithTarget:_userDelegate];
+- (void)forwardInvocation:(NSInvocation *)invocation
+{
+    SEL aSelector = [invocation selector];
+    
+    if ([_userDelegate respondsToSelector:aSelector])
+        [invocation invokeWithTarget:_userDelegate];
+    else
+        [super forwardInvocation:invocation];
+}
+
+- (NSMethodSignature *)methodSignatureForSelector:(SEL)aSelector
+{
+    return [super methodSignatureForSelector:aSelector] ?: [(NSObject*)_userDelegate methodSignatureForSelector:aSelector];
 }
 
 #pragma mark - delegate override methods
