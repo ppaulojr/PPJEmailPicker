@@ -450,7 +450,7 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= self.possibleStrings.count)
+    if (indexPath.row >= self.possibleStringsFiltered.count)
     {
         return;
     }
