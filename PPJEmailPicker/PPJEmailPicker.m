@@ -261,30 +261,30 @@
 		}
 	}
 	PPJSelectableLabel * lastElem = (self.selectedEmailUI).lastObject;
+	CGFloat height = self.minimumHeightTextField;
 	if (lastElem) {
 		self.inset = UIEdgeInsetsMake(lastElem.frame.origin.y,
 									  lastElem.frame.origin.x + lastElem.frame.size.width,
 									  0.0, 0.0);
-		CGFloat height = lastElem.frame.origin.y + lastElem.frame.size.height + 2;
-        height = (height > self.minimumHeightTextField)? height : self.minimumHeightTextField;
-        if (height == self.minimumHeightTextField) {
-            for (PPJSelectableLabel * lbl in self.selectedEmailUI) {
-                lbl.frame = CGRectMake(lbl.frame.origin.x,
-                                       (self.minimumHeightTextField - lbl.frame.size.height) / 2,
-                                       lbl.frame.size.width,
-                                       lbl.frame.size.height);
-            }
-        }
-        finalFrame.size = CGSizeMake(finalFrame.size.width, height);
+		CGFloat bubbleHeight = lastElem.frame.origin.y + lastElem.frame.size.height + 2;
+		height = (bubbleHeight > self.minimumHeightTextField) ? bubbleHeight : self.minimumHeightTextField;
+		if (height == self.minimumHeightTextField) {
+			for (PPJSelectableLabel * lbl in self.selectedEmailUI) {
+				lbl.frame = CGRectMake(lbl.frame.origin.x,
+									   (self.minimumHeightTextField - lbl.frame.size.height) / 2,
+									   lbl.frame.size.width,
+									   lbl.frame.size.height);
+			}
+		}
 	}
-	
-    BOOL heightChanged = CGRectGetHeight(self.frame) != CGRectGetHeight(finalFrame);
-    self.frame = finalFrame;
-    self.emailPickerTableView.frame = [self emailPickerTableViewFrameForTextField:self];
-    if (heightChanged && [self.pickerDelegate respondsToSelector:@selector(picker:changedHeight:)]) {
-        CGFloat height = CGRectGetHeight(finalFrame);
-        [self.pickerDelegate picker:self changedHeight:height];
-    }
+	// Garante altura mínima mesmo sem bubbles
+	finalFrame.size = CGSizeMake(finalFrame.size.width, height);
+	BOOL heightChanged = CGRectGetHeight(self.frame) != CGRectGetHeight(finalFrame);
+	self.frame = finalFrame;
+	self.emailPickerTableView.frame = [self emailPickerTableViewFrameForTextField:self];
+	if (heightChanged && [self.pickerDelegate respondsToSelector:@selector(picker:changedHeight:)]) {
+		[self.pickerDelegate picker:self changedHeight:height];
+	}
 }
 
 // placeholder position
